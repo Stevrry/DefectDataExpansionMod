@@ -4,5 +4,5 @@
     <BuildType Name="ExportDebug" />
     <BuildType Name="ExportRelease" />
   </Configurations>
-  <Project Path="Defect's Data Expansion/Defect's Data Expansion.csproj" />
+  <Project Path="Defect's Data Expansion/Defect_s_Data_Expansion.csproj" />
 </Solution>

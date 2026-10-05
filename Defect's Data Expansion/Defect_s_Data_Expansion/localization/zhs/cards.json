@@ -1,0 +1,4 @@
+{
+  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH.title": "序列检索",
+  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH.description": "本回合失去{FocusPower:diff()}点[gold]集中[/gold]。\n抽{Cards:diff()}张牌。"
+}

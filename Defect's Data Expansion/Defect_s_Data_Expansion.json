@@ -1,0 +1,17 @@
+﻿{
+  "id": "Defect_s_Data_Expansion",
+  "name": "鸡煲：数据扩展",
+  "author": "夕默辰，leper，夜刀神",
+  "description": "更大、更强、更好的鸡煲！",
+  "version": "v0.1.0",
+  "min_game_version": "0.111.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.7"
+    }
+  ],
+  "affects_gameplay": true
+}
