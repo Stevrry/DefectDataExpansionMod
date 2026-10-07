@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseLib.Abstracts;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
@@ -12,6 +10,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
@@ -19,10 +19,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
     /// 素材收集：将 3 张随机状态牌加入你的手牌。消耗。（升级：耗能 1 → 0，移除消耗）
     ///
     /// 候选来自游戏的状态牌池 <see cref="StatusCardPool"/>（共 12 张），
-    /// 只排除「来源仅限 BOSS 或遗物」的四张，见 <see cref="ExcludedStatuses"/>。</para>
+    /// 只排除「来源仅限 BOSS 或遗物」的四张，见 <see cref="ExcludedStatuses"/>。
     /// </summary>
-    [Pool(typeof(DefectCardPool))]
-    public sealed class MaterialCollection : CustomCardModel
+    [RegisterCard(typeof(DefectCardPool))]
+    public sealed class MaterialCollection : ModCardTemplate
     {
         /// <summary>
         /// 不参与随机生成的状态牌：呼唤、狂乱逃离、凋萎、煤灰。

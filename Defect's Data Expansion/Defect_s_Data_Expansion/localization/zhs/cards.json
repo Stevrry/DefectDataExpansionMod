@@ -1,8 +1,8 @@
 {
-  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH.title": "序列检索",
-  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH.description": "本回合失去{FocusPower:diff()}点[gold]集中[/gold]。\n抽{Cards:diff()}张牌。",
-  "DEFECT_S_DATA_EXPANSION-SOOTHETHE_MACHINE_SOUL.title": "安抚机魂",
-  "DEFECT_S_DATA_EXPANSION-SOOTHETHE_MACHINE_SOUL.description": "下一回合，获得{RitualPower:diff()}层[gold]仪式[/gold]。",
-  "DEFECT_S_DATA_EXPANSION-MATERIAL_COLLECTION.title": "素材收集",
-  "DEFECT_S_DATA_EXPANSION-MATERIAL_COLLECTION.description": "将{Cards:diff()}张随机状态牌加入你的[gold]手牌[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_CARD_SEQUENCE_SEARCH.title": "序列检索",
+  "DEFECT_S_DATA_EXPANSION_CARD_SEQUENCE_SEARCH.description": "本回合失去{FocusPower:diff()}点[gold]集中[/gold]。\n抽{Cards:diff()}张牌。",
+  "DEFECT_S_DATA_EXPANSION_CARD_SOOTHETHE_MACHINE_SOUL.title": "安抚机魂",
+  "DEFECT_S_DATA_EXPANSION_CARD_SOOTHETHE_MACHINE_SOUL.description": "下一回合，获得{RitualPower:diff()}层[gold]仪式[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_MATERIAL_COLLECTION.title": "素材收集",
+  "DEFECT_S_DATA_EXPANSION_CARD_MATERIAL_COLLECTION.description": "将{Cards:diff()}张随机状态牌加入你的[gold]手牌[/gold]。"
 }

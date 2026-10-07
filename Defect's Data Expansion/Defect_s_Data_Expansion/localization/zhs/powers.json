@@ -1,7 +1,7 @@
 {
-  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH_FOCUS_DOWN_POWER.description": "在本回合内失去[gold]集中[/gold]。",
-  "DEFECT_S_DATA_EXPANSION-SEQUENCE_SEARCH_FOCUS_DOWN_POWER.smartDescription": "本回合失去[blue]{Amount:abs()}[/blue]点[gold]集中[/gold]。",
-  "DEFECT_S_DATA_EXPANSION-SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.title": "下回合仪式",
-  "DEFECT_S_DATA_EXPANSION-SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.description": "在你的下回合开始时，获得[blue]1[/blue]层[gold]仪式[/gold]。",
-  "DEFECT_S_DATA_EXPANSION-SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.smartDescription": "在你的下回合开始时，获得[blue]{Amount}[/blue]层[gold]仪式[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_POWER_SEQUENCE_SEARCH_FOCUS_DOWN_POWER.description": "在本回合内失去[gold]集中[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_POWER_SEQUENCE_SEARCH_FOCUS_DOWN_POWER.smartDescription": "本回合失去[blue]{Amount:abs()}[/blue]点[gold]集中[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.title": "下回合仪式",
+  "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.description": "在你的下回合开始时，获得[blue]1[/blue]层[gold]仪式[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.smartDescription": "在你的下回合开始时，获得[blue]{Amount}[/blue]层[gold]仪式[/gold]。"
 }

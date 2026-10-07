@@ -1,3 +1,5 @@
 {
-
+  "DEFECT_S_DATA_EXPANSION_RELIC_EXPANSION_DISK.title": "扩容磁盘",
+  "DEFECT_S_DATA_EXPANSION_RELIC_EXPANSION_DISK.description": "你的卡牌奖励将会[gold]额外[/gold]包含一张牌。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_EXPANSION_DISK.flavor": "故障机器人在塔底捡到的神秘磁盘，里面似乎有海量的数据……"
 }
