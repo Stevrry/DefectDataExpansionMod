@@ -33,6 +33,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode
             patcher.RegisterPatch<ExpansionDiskGrantPatch>();
             patcher.RegisterPatch<CharacterSelectToggleInjectPatch>();
             patcher.RegisterPatch<CharacterSelectToggleVisibilityPatch>();
+            patcher.RegisterPatch<WitchsHouseRewardPatch>();
             RitsuLibFramework.ApplyRequiredPatcher(patcher, DisableMod, "模组“鸡煲：数据扩展”的关键补丁无法应用。" + ModId + " 已被禁用。");
         }
 

@@ -3,5 +3,8 @@
   "DEFECT_S_DATA_EXPANSION_POWER_SEQUENCE_SEARCH_FOCUS_DOWN_POWER.smartDescription": "本回合失去[blue]{Amount:abs()}[/blue]点[gold]集中[/gold]。",
   "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.title": "下回合仪式",
   "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.description": "在你的下回合开始时，获得[blue]1[/blue]层[gold]仪式[/gold]。",
-  "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.smartDescription": "在你的下回合开始时，获得[blue]{Amount}[/blue]层[gold]仪式[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.smartDescription": "在你的下回合开始时，获得[blue]{Amount}[/blue]层[gold]仪式[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_POWER_MALFUNCTION.title": "故障",
+  "DEFECT_S_DATA_EXPANSION_POWER_MALFUNCTION.description": "故障层数越高，获得的能力越多。达到8层时，获得“故障”给予的所有能力，至多叠加8层。",
+  "DEFECT_S_DATA_EXPANSION_POWER_MALFUNCTION.smartDescription": "当前[blue]{Amount}[/blue]层，会给予的全部效果：\n[blue]2[/blue]层：失去2点[gold]力量[/gold]。\n[blue]4[/blue]层：获得4层[gold]瓦解[/gold]、5点[gold]力量[/gold]、2点[gold]敏捷[/gold]。\n[blue]6[/blue]层：获得4层[gold]瓦解[/gold]、[gold]机器学习[/gold]。\n[blue]8[/blue]层：获得[gold]孤注一掷[/gold]、2点[gold]敏捷[/gold]。"
 }

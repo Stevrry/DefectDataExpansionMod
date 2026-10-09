@@ -1,0 +1,20 @@
+{
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.title": "女巫之屋",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.INITIAL.description": "今天你经历了很多的战斗，幸运的是你找到一栋屋子，看起来已经很久没人住了。你找到一间比较干净的房间，打算在这里休息。\n\n但你发现房间的墙壁有一种[sine]说不出的怪感[/sine]，墙壁形成了一种奇怪的角度。你很想休息了，但你感觉在这里休息……似乎会发生不详的事情。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.INITIAL.options.REST.title": "休息一晚",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.INITIAL.options.REST.description": "回复{Heal:diff()}点生命，然后与当前阶段的一个随机[gold]精英[/gold]敌人进行战斗。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.INITIAL.options.SCAVENGE.title": "搜刮一番，继续赶路",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.INITIAL.options.SCAVENGE.description": "获得1瓶[gold]鲜血药水[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.REST.description": "当你迷迷糊糊即将睡着的时候，一扇发紫光的门出现在了成诡异角度的墙壁上，把你吸了进去，刚落脚，[gold][jitter]一个怪物就出现在你的面前！[/jitter][/gold]",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.REST.options.FIGHT.title": "战斗",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.REST.options.FIGHT.description": "战胜敌人后，本次战斗的奖励将替换为{Cards:diff()}次来自其他角色的[gold]卡牌奖励[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_THE_WITCHS_HOUSE.pages.SCAVENGE.description": "你强打精神翻找房间，找到一些能帮你撑过接下来战斗的物资，也翻出几样从未见过的东西。它们到底从哪来？\n\n获得1瓶[gold]鲜血药水[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.title": "巨大的响声",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.description": "你在丛林深处穿行。潮湿的空气忽然被一声巨响撕开——\n\n[shake]轰！[/shake]\n\n那声音沉闷而遥远，似乎来自海港方向。整片树林[jitter]猛地一颤[/jitter]，树冠上的果实被震得纷纷坠落，果实纷纷砸向地面。\n\n灌木深处传来窸窣声与低吼。有些动物已经赶来了。\n\n你要怎么做？",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.DODGE_FRUIT.title": "躲开果雨",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.DODGE_FRUIT.description": "获得[gold]{Relic}[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.GRAB_FRUIT.title": "冒险拾取",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.GRAB_FRUIT.description": "失去[red]{HpLoss}[/red]点生命。获得[blue]{Gold}[/blue][gold]金币[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.DODGE_FRUIT.description": "你灵敏的躲开了掉落的果实，你感觉自己的身体变轻了！",
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.GRAB_FRUIT.description": "你冲进果雨，趁其他动物赶来前把果实塞进背包。\n\n你被掉落的果实砸中了，[jitter]好痛！[/jitter]"
+}

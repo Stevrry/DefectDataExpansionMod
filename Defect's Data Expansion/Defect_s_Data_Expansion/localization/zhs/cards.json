@@ -4,5 +4,21 @@
   "DEFECT_S_DATA_EXPANSION_CARD_SOOTHETHE_MACHINE_SOUL.title": "安抚机魂",
   "DEFECT_S_DATA_EXPANSION_CARD_SOOTHETHE_MACHINE_SOUL.description": "下一回合，获得{RitualPower:diff()}层[gold]仪式[/gold]。",
   "DEFECT_S_DATA_EXPANSION_CARD_MATERIAL_COLLECTION.title": "素材收集",
-  "DEFECT_S_DATA_EXPANSION_CARD_MATERIAL_COLLECTION.description": "将{Cards:diff()}张随机状态牌加入你的[gold]手牌[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_CARD_MATERIAL_COLLECTION.description": "将{Cards:diff()}张随机状态牌加入你的[gold]手牌[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_PROCESSING.title": "加工",
+  "DEFECT_S_DATA_EXPANSION_CARD_PROCESSING.description": "[gold]消耗手牌[/gold]中所有状态牌，每张获得{Block:diff()}点[gold]格挡[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_TAKE_OFF_ARMOR.title": "卸甲",
+  "DEFECT_S_DATA_EXPANSION_CARD_TAKE_OFF_ARMOR.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]晕眩[/gold]添加到你的[gold]弃牌堆[/gold]中。\n获得{Malfunction:diff()}层[gold]故障[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_ARMOR_BREAK.title": "破甲",
+  "DEFECT_S_DATA_EXPANSION_CARD_ARMOR_BREAK.description": "对所有敌人造成{Damage:diff()}点伤害，将一张[gold]灼伤[/gold]添加到你的[gold]弃牌堆[/gold]中。\n获得{Malfunction:diff()}层[gold]故障[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_DESTROY.title": "销毁",
+  "DEFECT_S_DATA_EXPANSION_CARD_DESTROY.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]消耗手牌[/gold]中所有状态牌。",
+  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_REPAIR.title": "抢修",
+  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_REPAIR.description": "失去{Malfunction:diff()}层[gold]故障[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_IMPACT.title": "撞击",
+  "DEFECT_S_DATA_EXPANSION_CARD_IMPACT.description": "造成{Damage:diff()}点伤害。\n获得{Malfunction:diff()}层[gold]故障[/gold]，将2张[gold]伤口[/gold]加入你的[gold]手牌[/gold]中。",
+  "DEFECT_S_DATA_EXPANSION_CARD_FEARLESS.title": "无惧",
+  "DEFECT_S_DATA_EXPANSION_CARD_FEARLESS.description": "造成{CalculatedDamage:diff()}点伤害。\n每有一层[gold]故障[/gold]，则增加{ExtraDamage:diff()}点额外伤害。",
+  "DEFECT_S_DATA_EXPANSION_CARD_FORCED_EXPANSION.title": "强制扩容",
+  "DEFECT_S_DATA_EXPANSION_CARD_FORCED_EXPANSION.description": "获得{OrbSlots:diff()}个[gold]充能球栏位[/gold]。\n获得{Malfunction:diff()}层[gold]故障[/gold]，将一张[gold]灼伤[/gold]加入你的[gold]手牌[/gold]中。"
 }

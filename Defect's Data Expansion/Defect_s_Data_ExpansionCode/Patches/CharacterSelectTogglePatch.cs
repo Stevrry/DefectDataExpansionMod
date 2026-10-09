@@ -12,7 +12,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
 {
     /// <summary>
     /// 在选人界面注入模组开关（原版设置页同款的一行：左侧文字 + 右侧勾选框）。
-    /// 只在选中故障机器人（且该角色未锁定）时显示。</item>
+    /// 只在选中故障机器人（且该角色未锁定）时显示。
     /// </summary>
     internal static class CharacterSelectToggle
     {
@@ -116,7 +116,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
             || string.Equals(character?.Id.Entry, "DEFECT", StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
-        /// 把开关行摆到按钮正上方：横向以<b>屏幕右边</b>为锚点（留 <see cref="RightMargin"/> 的边距），
+        /// 把开关行摆到按钮正上方：横向以屏幕右边为锚点（留 <see cref="RightMargin"/> 的边距），
         /// 纵向底边在按钮上边留 <see cref="RowGap"/> 的空隙。
         /// </summary>
         private static void SyncRect(NCharacterSelectScreen screen, NModToggleRow row, Control button)
