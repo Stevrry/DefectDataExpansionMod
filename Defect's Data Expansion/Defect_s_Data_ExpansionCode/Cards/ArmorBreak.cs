@@ -31,6 +31,13 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             new PowerVar<Malfunction>(1m)
         ];
 
+        /// <summary>
+        /// 卡图路径
+        /// </summary>
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
+
         /// <summary>悬停时说明它塞进来的灼伤、以及它会给自己叠的故障。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [

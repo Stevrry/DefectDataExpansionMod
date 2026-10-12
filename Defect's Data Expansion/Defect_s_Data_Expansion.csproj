@@ -60,6 +60,11 @@
         <None Include="project.godot" />
         <None Include="Defect_s_Data_Expansion/**" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Defect_s_Data_Expansion\images\cards\" />
+      <Folder Include="Defect_s_Data_Expansion\images\powers\" />
+    </ItemGroup>
     
     <Target Name="CheckDependencyPaths">
         <Error Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'" Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />

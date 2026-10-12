@@ -16,5 +16,13 @@
   "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.GRAB_FRUIT.title": "冒险拾取",
   "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.INITIAL.options.GRAB_FRUIT.description": "失去[red]{HpLoss}[/red]点生命。获得[blue]{Gold}[/blue][gold]金币[/gold]。",
   "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.DODGE_FRUIT.description": "你灵敏的躲开了掉落的果实，你感觉自己的身体变轻了！",
-  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.GRAB_FRUIT.description": "你冲进果雨，趁其他动物赶来前把果实塞进背包。\n\n你被掉落的果实砸中了，[jitter]好痛！[/jitter]"
+  "DEFECT_S_DATA_EXPANSION_EVENT_A_HUGE_NOISE.pages.GRAB_FRUIT.description": "你冲进果雨，趁其他动物赶来前把果实塞进背包。\n\n你被掉落的果实砸中了，[jitter]好痛！[/jitter]",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.title": "“好心人”",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.description": "一个戴着兜帽、脸覆面具的人朝你走来。他停在你面前，声音听起来很愉快：\n\n[sine]“你好啊，朋友。你想获得强大的力量吗？”[/sine]\n\n他伸出手，像是在等待一场契约。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.AGREE.title": "同意",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.AGREE.description": "失去[red]{MaxHpLoss}[/red]点最大生命。获得一件[gold]强力遗物[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.DECLINE.title": "不同意",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.DECLINE.description": "失去[red]{HpLoss}[/red]点生命。获得一件随机[gold]普通遗物[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.AGREE.description": "你握住了他的手。他猛地扣紧你的手腕，一阵虚弱从掌心蔓延至全身。等你缓过神时，他已经离开了。耳边只剩下一声低语：\n\n[shake]“这样才对。”[/shake]",
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.DECLINE.description": "你对这个人有种说不出的熟悉感，但还是拒绝了他。你转身正要离开，他在背后叹了口气：\n\n“真可惜……不过，让我助你一臂之力吧。”"
 }

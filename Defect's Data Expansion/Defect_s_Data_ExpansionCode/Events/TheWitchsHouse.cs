@@ -38,8 +38,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
         private const string EliteRngLabel = "the_witchs_house_elite";
 
         /// <summary>
-        /// 从事件里转去战斗的事件必须是 shared 
-        /// 会直接对非 shared 的事件抛异常。顺带这也让它出现在每一个阶段的事件池里（ActModel.GenerateRooms 会把共享事件拼到所有阶段后面）。
+        /// 从事件里转去战斗的事件必须是合作事件
+        /// 会直接对非合作事件抛异常。顺带这也让它出现在每一个阶段的事件池里（ActModel.GenerateRooms 会把共享事件拼到所有阶段后面）。
         /// </summary>
         public override bool IsShared => true;
 

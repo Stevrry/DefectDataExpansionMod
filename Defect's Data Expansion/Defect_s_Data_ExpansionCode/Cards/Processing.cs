@@ -36,6 +36,13 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         ];
 
         /// <summary>
+        /// 卡图路径
+        /// </summary>
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
+
+        /// <summary>
         /// 「消耗」是这张牌对**别的牌**做的事，本体没有这个关键词，
         /// 但悬停时应当能查到它的说明（与「重振精神」一致）。
         /// </summary>

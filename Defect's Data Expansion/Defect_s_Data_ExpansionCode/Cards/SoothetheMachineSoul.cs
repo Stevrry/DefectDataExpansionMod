@@ -29,6 +29,13 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         ];
 
         /// <summary>
+        /// 卡图路径
+        /// </summary>
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
+
+        /// <summary>
         /// 悬停卡牌时显示的提示框：仪式（以及它每回合提供的力量）。
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

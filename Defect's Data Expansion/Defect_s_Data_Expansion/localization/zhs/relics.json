@@ -4,5 +4,11 @@
   "DEFECT_S_DATA_EXPANSION_RELIC_EXPANSION_DISK.flavor": "故障机器人在塔底捡到的神秘磁盘，里面似乎有海量的数据……",
   "DEFECT_S_DATA_EXPANSION_RELIC_AGILE_MEMORY.title": "敏捷的记忆",
   "DEFECT_S_DATA_EXPANSION_RELIC_AGILE_MEMORY.description": "在下一场战斗开始时，获得{DexterityPower}点[gold]敏捷[/gold]。",
-  "DEFECT_S_DATA_EXPANSION_RELIC_AGILE_MEMORY.flavor": "于密林中获得的有关敏捷的记忆，总觉得……错过了什么？"
+  "DEFECT_S_DATA_EXPANSION_RELIC_AGILE_MEMORY.flavor": "你仍然记得你当时灵活的躲过了那场果雨，但是总觉得……好像错过了什么？",
+  "DEFECT_S_DATA_EXPANSION_RELIC_EMPTY_BOTTLE.title": "空瓶子",
+  "DEFECT_S_DATA_EXPANSION_RELIC_EMPTY_BOTTLE.description": "拾起时，从[gold]牌组[/gold]中选择一张牌，为它[gold]附魔[/gold]：[purple]稳定[/purple]。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_EMPTY_BOTTLE.flavor": "这个瓶子里曾经装了东西，然而里面的物品已经不知去向。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_D6.title": "D6",
+  "DEFECT_S_DATA_EXPANSION_RELIC_D6.description": "拾起时，[red]失去[/red]你的所有遗物（不包括该遗物），然后[gold]获得[/gold]相同数量的随机遗物。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_D6.flavor": "重置你的命运……"
 }
