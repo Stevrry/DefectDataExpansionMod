@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 卸甲：获得12(15)点格挡，将一张晕眩添加到你的弃牌堆中，获得1层故障。
+    /// 卸甲：获得12(15)点格挡，将一张晕眩添加到你的弃牌堆中，获得1层过热。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class TakeOffArmor : ModCardTemplate
@@ -31,14 +31,14 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(12m, ValueProp.Move),
-            new PowerVar<Malfunction>(1m)
+            new PowerVar<Overheat>(1m)
         ];
 
-        /// <summary>悬停时说明它塞进来的晕眩、以及它会给自己叠的故障。</summary>
+        /// <summary>悬停时说明它塞进来的晕眩、以及它会给自己叠的过热。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Dazed>(),
-            HoverTipFactory.FromPower<Malfunction>()
+            HoverTipFactory.FromPower<Overheat>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -55,10 +55,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 await Cmd.Wait(0.5f);
             }
 
-            await PowerCmd.Apply<Malfunction>(
+            await PowerCmd.Apply<Overheat>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Malfunction"].BaseValue,
+                DynamicVars["Overheat"].BaseValue,
                 Owner.Creature,
                 this);
         }

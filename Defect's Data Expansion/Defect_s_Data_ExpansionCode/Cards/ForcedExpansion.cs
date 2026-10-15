@@ -15,7 +15,8 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 强制扩容：获得 2(3) 个充能球栏位。获得 1 层故障，将一张灼伤加入你的手牌中。
+    /// 强制扩容：获得1(2)个充能球栏位，获得1层过热。
+    /// 未升级时还会往手牌里塞一张灼伤。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ForcedExpansion : ModCardTemplate
@@ -29,16 +30,22 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DynamicVar(OrbSlotsVar, 2m),
-            new PowerVar<Malfunction>(1m)
+            new DynamicVar(OrbSlotsVar, 1m),
+            new PowerVar<Overheat>(1m)
         ];
 
-        /// <summary>悬停时说明它会给自己叠的故障、以及塞进手牌的灼伤。</summary>
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
-        [
-            HoverTipFactory.FromPower<Malfunction>(),
-            HoverTipFactory.FromCard<Burn>()
-        ];
+        /// <summary>悬停时说明它会给自己叠的过热；升级后不再塞灼伤，就不显示灼伤的提示。</summary>
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips => BuildHoverTips();
+
+        private IEnumerable<IHoverTip> BuildHoverTips()
+        {
+            yield return HoverTipFactory.FromPower<Overheat>();
+
+            if (!IsUpgraded)
+            {
+                yield return HoverTipFactory.FromCard<Burn>();
+            }
+        }
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
@@ -47,12 +54,18 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
             await OrbCmd.AddSlots(Owner, DynamicVars[OrbSlotsVar].IntValue);
 
-            await PowerCmd.Apply<Malfunction>(
+            await PowerCmd.Apply<Overheat>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Malfunction"].BaseValue,
+                DynamicVars["Overheat"].BaseValue,
                 Owner.Creature,
                 this);
+
+            // 升级后不再往手牌里塞灼伤
+            if (IsUpgraded)
+            {
+                return;
+            }
 
             // CombatState 声明成可空，但打牌时一定在
             if (CombatState is not { } combatState)
@@ -65,7 +78,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             await Cmd.Wait(0.5f);
         }
 
-        /// <summary>升级只加栏位 2 → 3。</summary>
+        /// <summary>升级：栏位 1 → 2（塞灼伤那一条在 OnPlay 里按 IsUpgraded 跳过了）。</summary>
         protected override void OnUpgrade()
         {
             DynamicVars[OrbSlotsVar].UpgradeValueBy(1m);

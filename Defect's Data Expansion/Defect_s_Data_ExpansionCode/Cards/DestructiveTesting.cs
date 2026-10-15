@@ -7,52 +7,57 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 序列检索：本回合失去1(2)点集中，抽2(3)张牌。
+    /// 破坏性试验：抽2(3)张牌，获得2层过热。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
-    public sealed class SequenceSearch : ModCardTemplate
+    public sealed class DestructiveTesting : ModCardTemplate
     {
-        public SequenceSearch() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+        public DestructiveTesting() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
         {
         }
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CardsVar(2),
-            new PowerVar<FocusPower>(1m)
+            new PowerVar<Overheat>(2m)
         ];
 
         /// <summary>
-        /// 悬停卡牌时显示的能力提示框（与超能光束等原版卡一致）。
+        /// 卡图路径
+        /// </summary>
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
+
+        /// <summary>
+        /// 悬停卡牌时显示的能力提示框。
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<FocusPower>()
+            HoverTipFactory.FromPower<Overheat>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            // 本回合失去集中：施加临时的反向集中，回合结束时自动返还。
-            await PowerCmd.Apply<SequenceSearchFocusDownPower>(
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+
+            // 过热挂在自己身上，层数越高代价越重，但掉层时会返还能量
+            await PowerCmd.Apply<Overheat>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["FocusPower"].BaseValue,
+                DynamicVars["Overheat"].BaseValue,
                 Owner.Creature,
                 this);
-
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars["FocusPower"].UpgradeValueBy(1m);
             DynamicVars.Cards.UpgradeValueBy(1m);
         }
     }

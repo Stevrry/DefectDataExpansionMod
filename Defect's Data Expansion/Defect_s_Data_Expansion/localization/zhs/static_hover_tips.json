@@ -1,3 +1,6 @@
 {
-
+  "DEFECT_S_DATA_EXPANSION_DECLINE.title": "衰退",
+  "DEFECT_S_DATA_EXPANSION_DECLINE.description": "从这张卡牌获得的能力与状态层数减少50%。",
+  "DEFECT_S_DATA_EXPANSION_TRANSFORM.title": "转化",
+  "DEFECT_S_DATA_EXPANSION_TRANSFORM.description": "过热被转化时，不会给予能量。"
 }

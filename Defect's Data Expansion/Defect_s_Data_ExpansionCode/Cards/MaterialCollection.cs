@@ -54,6 +54,13 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         private static IEnumerable<CardModel> StatusCandidates =>
             ModelDb.CardPool<StatusCardPool>().AllCards.Where(card => !ExcludedStatuses.Contains(card.GetType()));
 
+        /// <summary>
+        /// 卡图路径
+        /// </summary>
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
+
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

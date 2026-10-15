@@ -15,10 +15,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 加工：消耗手牌中所有状态牌，每张获得 4(5) 点格挡。
-    ///
-    /// <para>实现照原版「重振精神」(SecondWind) 写，只把它的筛选条件
-    /// 「非攻击牌」换成「状态牌」。</para>
+    /// 加工：消耗你所有的状态牌，每张获得 4(5) 点格挡。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Processing : ModCardTemplate
@@ -55,8 +52,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-            // 先 ToList 快照再逐个消耗：遍历时手牌会变
-            foreach (CardModel card in StatusCardsInHand().ToList())
+            foreach (CardModel card in StatusCardsInCombat().ToList())
             {
                 await CardCmd.Exhaust(choiceContext, card);
                 await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
@@ -68,8 +64,18 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             DynamicVars.Block.UpgradeValueBy(1m);
         }
 
-        /// <summary>手牌里的状态牌。直接按卡牌类型判断，战斗里生成的临时状态牌同样算。</summary>
-        private IEnumerable<CardModel> StatusCardsInHand() =>
-            PileType.Hand.GetPile(Owner).Cards.Where(card => card.Type == CardType.Status);
+        /// <summary>
+        /// 战斗中所有牌堆里的状态牌（抽牌堆 / 手牌 / 弃牌堆）。
+        /// </summary>
+        private IEnumerable<CardModel> StatusCardsInCombat()
+        {
+            // PlayerCombatState 声明成可空（只有战斗中才非空），但技能牌只在战斗里打得出
+            if (Owner.PlayerCombatState is not { } combatState)
+            {
+                return [];
+            }
+
+            return combatState.AllCards.Where(card => card.Type == CardType.Status && card.Pile is { Type: not PileType.Exhaust });
+        }
     }
 }

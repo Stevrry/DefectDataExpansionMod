@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 爆甲：对所有敌人造成 14(18) 点伤害，将一张灼伤添加到你的弃牌堆中，获得 1 层故障。
+    /// 爆甲：对所有敌人造成 14(18) 点伤害，将一张灼伤添加到你的弃牌堆中，获得1层过热。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ArmorBreak : ModCardTemplate
@@ -28,7 +28,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(14m, ValueProp.Move),
-            new PowerVar<Malfunction>(1m)
+            new PowerVar<Overheat>(1m)
         ];
 
         /// <summary>
@@ -38,11 +38,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
         );
 
-        /// <summary>悬停时说明它塞进来的灼伤、以及它会给自己叠的故障。</summary>
+        /// <summary>悬停时说明它塞进来的灼伤、以及它会给自己叠的过热。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Burn>(),
-            HoverTipFactory.FromPower<Malfunction>()
+            HoverTipFactory.FromPower<Overheat>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -65,10 +65,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(burn, PileType.Discard, Owner));
             await Cmd.Wait(0.5f);
 
-            await PowerCmd.Apply<Malfunction>(
+            await PowerCmd.Apply<Overheat>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Malfunction"].BaseValue,
+                DynamicVars["Overheat"].BaseValue,
                 Owner.Creature,
                 this);
         }

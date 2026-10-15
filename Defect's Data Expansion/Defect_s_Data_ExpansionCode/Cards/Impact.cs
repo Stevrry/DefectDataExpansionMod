@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 撞击：造成 18(23) 点伤害。获得 1 层故障，将 2 张伤口加入你的手牌中。
+    /// 撞击：造成 12(16) 点伤害。获得 1 层过热，将 2 张伤口加入你的手牌中。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Impact : ModCardTemplate
@@ -31,14 +31,14 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DamageVar(18m, ValueProp.Move),
-            new PowerVar<Malfunction>(1m)
+            new PowerVar<Overheat>(1m)
         ];
 
-        /// <summary>悬停时说明它塞进来的伤口、以及它会给自己叠的故障。</summary>
+        /// <summary>悬停时说明它塞进来的伤口、以及它会给自己叠的过热。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Wound>(),
-            HoverTipFactory.FromPower<Malfunction>()
+            HoverTipFactory.FromPower<Overheat>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -52,10 +52,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
 
-            await PowerCmd.Apply<Malfunction>(
+            await PowerCmd.Apply<Overheat>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Malfunction"].BaseValue,
+                DynamicVars["Overheat"].BaseValue,
                 Owner.Creature,
                 this);
 
@@ -74,7 +74,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(5m);
+            DynamicVars.Damage.UpgradeValueBy(4m);
         }
     }
 }
