@@ -15,7 +15,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 强制扩容：获得1(2)个充能球栏位，获得1层过热。
+    /// 强制扩容：获得1个充能球栏位，获得1层过热。
     /// 未升级时还会往手牌里塞一张灼伤。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
@@ -31,7 +31,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new DynamicVar(OrbSlotsVar, 1m),
-            new PowerVar<Overheat>(1m)
+            new PowerVar<OverheatPower>(1m)
         ];
 
         /// <summary>悬停时说明它会给自己叠的过热；升级后不再塞灼伤，就不显示灼伤的提示。</summary>
@@ -39,7 +39,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         private IEnumerable<IHoverTip> BuildHoverTips()
         {
-            yield return HoverTipFactory.FromPower<Overheat>();
+            yield return HoverTipFactory.FromPower<OverheatPower>();
 
             if (!IsUpgraded)
             {
@@ -54,10 +54,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
             await OrbCmd.AddSlots(Owner, DynamicVars[OrbSlotsVar].IntValue);
 
-            await PowerCmd.Apply<Overheat>(
+            await PowerCmd.Apply<OverheatPower>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Overheat"].BaseValue,
+                DynamicVars["OverheatPower"].BaseValue,
                 Owner.Creature,
                 this);
 
@@ -78,10 +78,5 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             await Cmd.Wait(0.5f);
         }
 
-        /// <summary>升级：栏位 1 → 2（塞灼伤那一条在 OnPlay 里按 IsUpgraded 跳过了）。</summary>
-        protected override void OnUpgrade()
-        {
-            DynamicVars[OrbSlotsVar].UpgradeValueBy(1m);
-        }
     }
 }

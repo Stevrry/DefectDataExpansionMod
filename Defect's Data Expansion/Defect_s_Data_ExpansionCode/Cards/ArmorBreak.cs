@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 爆甲：对所有敌人造成 14(18) 点伤害，将一张灼伤添加到你的弃牌堆中，获得1层过热。
+    /// 爆甲：对所有敌人造成 13(15) 点伤害，将一张灼伤添加到你的弃牌堆中，获得1层过热。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ArmorBreak : ModCardTemplate
@@ -27,8 +27,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new DamageVar(14m, ValueProp.Move),
-            new PowerVar<Overheat>(1m)
+            new DamageVar(13m, ValueProp.Move),
+            new PowerVar<OverheatPower>(1m)
         ];
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Burn>(),
-            HoverTipFactory.FromPower<Overheat>()
+            HoverTipFactory.FromPower<OverheatPower>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -65,17 +65,17 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(burn, PileType.Discard, Owner));
             await Cmd.Wait(0.5f);
 
-            await PowerCmd.Apply<Overheat>(
+            await PowerCmd.Apply<OverheatPower>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Overheat"].BaseValue,
+                DynamicVars["OverheatPower"].BaseValue,
                 Owner.Creature,
                 this);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Damage.UpgradeValueBy(4m);
+            DynamicVars.Damage.UpgradeValueBy(2m);
         }
     }
 }

@@ -27,9 +27,9 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
     /// 唯一的例外是「转化」
     /// </summary>
     [RegisterPower]
-    public sealed class Overheat : ModPowerTemplate
+    public sealed class OverheatPower : ModPowerTemplate
     {
-        private const string LocPrefix = "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT";
+        private const string LocPrefix = "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT_POWER";
 
         /// <summary>层数上限：最高档位就是 5 层，再往上没有新效果，所以直接封顶。</summary>
         private const int MaxStacks = 5;
@@ -59,8 +59,15 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         /// <summary>过热是拿代价换能量的，能量图标一并显示（原版给能量的能力都这么做）。</summary>
         protected override bool IncludeEnergyHoverTip => true;
 
-        /// <summary>悬停时只列出当前层数已经拿到的那些代价，层数越高提示越多。</summary>
-        protected override IEnumerable<IHoverTip> AdditionalHoverTips => BuildHoverTips();
+        /// <summary>
+        /// 悬停时把两个代价都列出来，**不分档**：即使还没到 5 层，
+        /// 玩家也该先知道再往上叠会发生什么（孤注一掷要到 5 层才真的挂上）。
+        /// </summary>
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            HoverTipFactory.FromPower<DisintegrationPower>(),
+            HoverTipFactory.FromPower<TheGambitPower>()
+        ];
 
         /// <summary>
         /// 「转化」预留的接口：在 <paramref name="changeStacks"/> 执行期间，过热掉层不返还能量。
@@ -125,9 +132,28 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             await ApplyDelta<DisintegrationPower>(choiceContext, DisintegrationFor(after) - DisintegrationFor(before));
             await ApplyDelta<TheGambitPower>(choiceContext, Delta(after >= GambitTier, before >= GambitTier));
 
+            // 层数真的变了才通知「热量收集」这类观察者（削顶吃掉的不算变化）
+            if (actualDelta != 0m)
+            {
+                await NotifyHeatChangeObservers(choiceContext, actualDelta);
+            }
+
             if (actualDelta < 0m)
             {
                 await RefundEnergyForLostStacks(-actualDelta);
+            }
+        }
+
+        /// <summary>
+        /// 把「过热真的变了」告诉身上所有 <see cref="IHeatChangeObserver"/>。
+        /// 顺序无所谓：这里已经是判定之后的结论，观察者只需要做出反应。
+        /// </summary>
+        private async Task NotifyHeatChangeObservers(PlayerChoiceContext choiceContext, decimal actualDelta)
+        {
+            // 先快照：观察者有可能在反应里改动能力列表，边枚举边改会抛异常
+            foreach (IHeatChangeObserver observer in Owner.Powers.OfType<IHeatChangeObserver>().ToList())
+            {
+                await observer.OnHeatChanged(choiceContext, Owner, actualDelta);
             }
         }
 
@@ -146,18 +172,6 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             for (int i = 0; i < lostStacks; i++)
             {
                 await PlayerCmd.GainEnergy(1m, player);
-            }
-        }
-
-        /// <summary>按当前层数给出应显示的代价提示框。</summary>
-        private IEnumerable<IHoverTip> BuildHoverTips()
-        {
-            // 瓦解从 1 层开始就有，所以只要这层过热还在就显示
-            yield return HoverTipFactory.FromPower<DisintegrationPower>();
-
-            if (Amount >= GambitTier)
-            {
-                yield return HoverTipFactory.FromPower<TheGambitPower>();
             }
         }
 

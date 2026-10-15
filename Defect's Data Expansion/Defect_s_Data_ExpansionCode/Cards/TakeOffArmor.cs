@@ -31,14 +31,14 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new BlockVar(12m, ValueProp.Move),
-            new PowerVar<Overheat>(1m)
+            new PowerVar<OverheatPower>(1m)
         ];
 
         /// <summary>悬停时说明它塞进来的晕眩、以及它会给自己叠的过热。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromCard<Dazed>(),
-            HoverTipFactory.FromPower<Overheat>()
+            HoverTipFactory.FromPower<OverheatPower>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -55,10 +55,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 await Cmd.Wait(0.5f);
             }
 
-            await PowerCmd.Apply<Overheat>(
+            await PowerCmd.Apply<OverheatPower>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Overheat"].BaseValue,
+                DynamicVars["OverheatPower"].BaseValue,
                 Owner.Creature,
                 this);
         }

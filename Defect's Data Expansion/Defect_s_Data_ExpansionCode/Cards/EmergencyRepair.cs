@@ -14,7 +14,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 抢修：失去 1(2) 层过热。消耗。
+    /// 抢修：失去1层过热。消耗。升级后获得保留。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class EmergencyRepair : ModCardTemplate
@@ -25,7 +25,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new PowerVar<Overheat>(1m)
+            new PowerVar<OverheatPower>(1m)
         ];
 
         /// <summary>消耗。</summary>
@@ -36,7 +36,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<Overheat>()
+            HoverTipFactory.FromPower<OverheatPower>()
         ];
 
         /// <summary>
@@ -51,24 +51,27 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
             // 必须判「身上有没有过热」：PowerCmd.Apply 在目标没有该能力时会新建一个实例，
-            // 而新建那条路径不检查 ShouldRemoveDueToAmount，负数层数的故障会一直挂在身上。
+            // 而新建那条路径不检查 ShouldRemoveDueToAmount，负数层数的过热会一直挂在身上。
             // 已经存在时会走 ModifyAmount，那边会自动把降到 0 以下的能力移除。
-            if (!Owner.Creature.Powers.Any(power => power is Overheat))
+            if (!Owner.Creature.Powers.Any(power => power is OverheatPower))
             {
                 return;
             }
 
-            await PowerCmd.Apply<Overheat>(
+            await PowerCmd.Apply<OverheatPower>(
                 choiceContext,
                 Owner.Creature,
-                -DynamicVars["Overheat"].BaseValue,
+                -DynamicVars["OverheatPower"].BaseValue,
                 Owner.Creature,
                 this);
         }
 
+        /// <summary>
+        /// 升级只加「保留」，层数固定 1 层不动。
+        /// </summary>
         protected override void OnUpgrade()
         {
-            DynamicVars["Overheat"].UpgradeValueBy(1m);
+            AddKeyword(CardKeyword.Retain);
         }
     }
 }

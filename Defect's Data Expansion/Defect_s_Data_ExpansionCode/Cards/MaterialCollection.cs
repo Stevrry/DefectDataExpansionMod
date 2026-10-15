@@ -17,9 +17,6 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
     /// 素材收集：将 3 张随机状态牌加入你的手牌。消耗。（升级：耗能 1 → 0，移除消耗）
-    ///
-    /// 候选来自游戏的状态牌池 <see cref="StatusCardPool"/>（共 12 张），
-    /// 只排除「来源仅限 BOSS 或遗物」的四张，见 <see cref="ExcludedStatuses"/>。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class MaterialCollection : ModCardTemplate

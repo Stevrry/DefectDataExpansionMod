@@ -25,7 +25,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new CardsVar(2),
-            new PowerVar<Overheat>(2m)
+            new PowerVar<OverheatPower>(2m)
         ];
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromPower<Overheat>()
+            HoverTipFactory.FromPower<OverheatPower>()
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -48,10 +48,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
             // 过热挂在自己身上，层数越高代价越重，但掉层时会返还能量
-            await PowerCmd.Apply<Overheat>(
+            await PowerCmd.Apply<OverheatPower>(
                 choiceContext,
                 Owner.Creature,
-                DynamicVars["Overheat"].BaseValue,
+                DynamicVars["OverheatPower"].BaseValue,
                 Owner.Creature,
                 this);
         }

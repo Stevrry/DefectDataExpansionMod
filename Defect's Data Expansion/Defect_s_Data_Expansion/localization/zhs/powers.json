@@ -2,7 +2,13 @@
   "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.title": "下回合仪式",
   "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.description": "在你的下回合开始时，获得[blue]1[/blue]层[gold]仪式[/gold]。",
   "DEFECT_S_DATA_EXPANSION_POWER_SOOTHETHE_MACHINE_SOUL_RITUAL_POWER.smartDescription": "在你的下回合开始时，获得[blue]{Amount}[/blue]层[gold]仪式[/gold]。",
-  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT.title": "过热",
-  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT.description": "随过热层数的提高，会获得[red]瓦解[/red]，每当你失去1层过热时，获得能量。\n过热达到5层时会获得[red]孤注一掷[/red]，至多叠加5层。",
-  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT.smartDescription": "当前[blue]{Amount}[/blue]层，会给予的全部效果：\n[blue]1[/blue]层：获得2层[red]瓦解[/red]。\n[blue]2[/blue]层：获得2层[red]瓦解[/red]。\n[blue]3[/blue]层：获得3层[red]瓦解[/red]。\n[blue]4[/blue]层：获得4层[red]瓦解[/red]。\n[blue]5[/blue]层：获得[red]孤注一掷[/red]。"
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT_POWER.title": "过热",
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT_POWER.description": "随过热层数的提高，会获得[red]瓦解[/red]，每当你失去1层过热时，获得{energyPrefix:energyIcons(1)}。\n过热达到5层时会获得[red]孤注一掷[/red]，至多叠加5层。",
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT_POWER.smartDescription": "当前[blue]{Amount}[/blue]层，会给予的全部效果：\n[blue]1[/blue]层：获得2层[red]瓦解[/red]。\n[blue]2[/blue]层：获得2层[red]瓦解[/red]。\n[blue]3[/blue]层：获得3层[red]瓦解[/red]。\n[blue]4[/blue]层：获得4层[red]瓦解[/red]。\n[blue]5[/blue]层：获得[red]孤注一掷[/red]。",
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERDRAFT_POWER.title": "透支",
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERDRAFT_POWER.description": "在你的回合开始时，获得{Amount:energyIcons()}并额外抽[blue]1[/blue]张牌。",
+  "DEFECT_S_DATA_EXPANSION_POWER_OVERDRAFT_POWER.smartDescription": "在你的回合开始时，获得{Amount:energyIcons()}并额外抽[blue]{Amount}[/blue]张牌。",
+  "DEFECT_S_DATA_EXPANSION_POWER_HEAT_COLLECTION_POWER.title": "热量收集",
+  "DEFECT_S_DATA_EXPANSION_POWER_HEAT_COLLECTION_POWER.description": "每当你失去或获得[gold]过热[/gold]时，对所有敌人造成[blue]6[/blue]点伤害。",
+  "DEFECT_S_DATA_EXPANSION_POWER_HEAT_COLLECTION_POWER.smartDescription": "每当你失去或获得[gold]过热[/gold]时，对所有敌人造成[blue]{Amount}[/blue]点伤害。"
 }
