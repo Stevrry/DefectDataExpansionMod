@@ -21,7 +21,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ArmorBreak : ModCardTemplate
     {
-        public ArmorBreak() : base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+        public ArmorBreak() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
         {
         }
 

@@ -13,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 热量收集：每当你失去或获得过热时，对所有敌人造成 6(8) 点伤害。
+    /// 热量收集：每当你失去或获得过热时，对所有敌人造成 6(9) 点伤害。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class HeatCollection : ModCardTemplate

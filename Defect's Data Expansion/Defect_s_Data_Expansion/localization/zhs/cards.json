@@ -26,9 +26,19 @@
   "DEFECT_S_DATA_EXPANSION_CARD_OVERDRAFT.title": "透支",
   "DEFECT_S_DATA_EXPANSION_CARD_OVERDRAFT.description": "获得{OverheatPower:diff()}层[gold]过热[/gold]。\n在你的回合开始时，获得{energyPrefix:energyIcons(1)}并且额外抽1张牌。",
   "DEFECT_S_DATA_EXPANSION_CARD_COOLING.title": "冷却",
-  "DEFECT_S_DATA_EXPANSION_CARD_COOLING.description": "失去你所有的[gold]过热[/gold]，获得[gold]融入暗影[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_COOLING.description": "失去你所有的[gold]过热[/gold]。\n每失去一层过热，抽{Cards:diff()}张牌。\n获得[gold]融入暗影[/gold]。",
   "DEFECT_S_DATA_EXPANSION_CARD_HEAT_COLLECTION.title": "热量收集",
   "DEFECT_S_DATA_EXPANSION_CARD_HEAT_COLLECTION.description": "每当你失去或获得[gold]过热[/gold]时，对所有敌人造成{HeatCollectionPower:diff()}点伤害。",
   "DEFECT_S_DATA_EXPANSION_CARD_OVERHEATED_MISSILE.title": "过热飞弹",
-  "DEFECT_S_DATA_EXPANSION_CARD_OVERHEATED_MISSILE.description": "失去{OverheatPower:diff()}层[gold]过热[/gold]。\n造成{Damage:diff()}点伤害。"
+  "DEFECT_S_DATA_EXPANSION_CARD_OVERHEATED_MISSILE.description": "失去{OverheatPower:diff()}层[gold]过热[/gold]。\n造成{Damage:diff()}点伤害。",
+  "DEFECT_S_DATA_EXPANSION_CARD_THERMAL_BARRIER.title": "热量屏障",
+  "DEFECT_S_DATA_EXPANSION_CARD_THERMAL_BARRIER.description": "在你的回合开始时，每有1层[gold]过热[/gold]，就获得{Block:diff()}点[gold]格挡[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_RESPONSE.title": "应急处理",
+  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_RESPONSE.description": "失去你所有的[gold]过热[/gold]，每失去1层[gold]过热[/gold]，就获得{energyPrefix:energyIcons(1)}并受到{Damage:diff()}点伤害。",
+  "DEFECT_S_DATA_EXPANSION_CARD_MAGMA.title": "熔离",
+  "DEFECT_S_DATA_EXPANSION_CARD_MAGMA.description": "[gold]生成[/gold]1个[gold]熔离[/gold]充能球，去除1名敌人的所有[gold]格挡[/gold]。\n造成{Damage:diff()}点伤害。",
+  "DEFECT_S_DATA_EXPANSION_CARD_SCORCHING_SHIELD.title": "灼热护盾",
+  "DEFECT_S_DATA_EXPANSION_CARD_SCORCHING_SHIELD.description": "失去1层[gold]过热[/gold]。\n获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]熔离[/gold]充能球。",
+  "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.title": "蓝宝石蠕虫",
+  "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.description": "每当你抽到这张牌时，将这张牌的复制品加入你的[gold]手牌[/gold]。"
 }

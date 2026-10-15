@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -20,8 +19,8 @@ using System.Threading.Tasks;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 乱码的图标：将你身上所有能力与状态的层数除以 2，并重置成同类里的随机一项。
-    /// 正面能力只从打出这张牌的角色的池子里抽，负面状态从全部负面状态里抽。
+    /// 乱码的图标：将你身上所有能力与状态的层数除以 2，并重置成随机的一项。
+    /// 抽取**不分类别** —— 正面能力可能被换成一个负面状态，反过来也一样。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class GarbledIcon : ModCardTemplate
@@ -31,6 +30,25 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         /// <summary>「衰退」在 static_hover_tips 里的条目名（后面接 .title / .description）。</summary>
         private const string DeclineLocEntry = "DEFECT_S_DATA_EXPANSION_DECLINE";
+
+        /// <summary>
+        /// 不进候选池的「怪物专属特性」（负面状态）。
+        ///
+        /// 判据是「除了怪物自己，游戏里没有任何卡牌 / 遗物 / 药水 / 事件在用它」
+        ///
+        /// 新增怪物专属特性时需要往这里补。
+        /// </summary>
+        private static readonly HashSet<Type> MonsterOnlyDebuffs =
+        [
+            typeof(ConstrictPower),     // 紧缠      SlitheringStrangler
+            typeof(DampenPower),        // 抑制      MagiKnight
+            typeof(ImbalancedPower),    // 失衡      BowlbugRock
+            typeof(PlowPower),          // 横冲直撞  CeremonialBeast
+            typeof(ShriekPower),        // 尖啸      TerrorEel
+            typeof(SlowPower),          // 缓慢      BygoneEffigy
+            typeof(SurroundedPower),    // 遭到包围  Rocket
+            typeof(TenderPower)         // 柔嫩      HunterKiller
+        ];
 
         public GarbledIcon() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
         {
@@ -50,8 +68,6 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
             foreach (PowerModel power in powers)
             {
-                bool wasBuff = power.TypeForCurrentAmount == PowerType.Buff;
-
                 int halved = power.Amount / 2;
 
                 await PowerCmd.Remove(power);
@@ -61,7 +77,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                     continue;
                 }
 
-                PowerModel? replacement = PickReplacement(wasBuff);
+                PowerModel? replacement = PickReplacement();
                 if (replacement is null)
                 {
                     continue;
@@ -72,18 +88,30 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             }
         }
 
-        /// <summary>按类别抽一个新能力。</summary>
-        private PowerModel? PickReplacement(bool wasBuff)
+        /// <summary>
+        /// 从候选池里等概率抽一个，**不看被换掉的那个是正面还是负面** ——
+        /// 正面能力可能被换成负面状态，负面状态也可能被换成正面能力，这就是这张牌要的「跨种类随机」。
+        /// </summary>
+        private PowerModel? PickReplacement()
         {
-            IEnumerable<PowerModel> pool = wasBuff
-                ? CharacterBuffPool()
-                : ModelDb.AllPowers.Where(power => power.IsVisible && power.Type == PowerType.Debuff);
-
-            return Owner.RunState.Rng.CombatCardGeneration.NextItem(pool.ToList())?.ToMutable();
+            return Owner.RunState.Rng.CombatCardGeneration.NextItem(CandidatePool())?.ToMutable();
         }
 
         /// <summary>
-        /// 「这个角色能获得的能力」引擎里没有现成的表（没有 PowerPool 这种东西），
+        /// 候选池 = 「这个角色能拿到的那批能力」 ∪ 「所有露脸的负面状态（去掉怪物专属特性）」。
+        /// </summary>
+        private List<PowerModel> CandidatePool()
+        {
+            return CharacterBuffPool()
+                .Concat(ModelDb.AllPowers.Where(power =>
+                    power.IsVisible
+                    && power.Type == PowerType.Debuff
+                    && !MonsterOnlyDebuffs.Contains(power.GetType())))
+                .ToList();
+        }
+
+        /// <summary>
+        /// 「这个角色能获得的正面能力」引擎里没有现成的表（没有 PowerPool 这种东西），
         /// 所以从角色自己的卡池反推：把该角色每张牌的 PowerVar&lt;T&gt; 里的 T 收集起来。
         /// IsVisible 用来滤掉那些幕后干活、不该露面的能力。
         /// </summary>

@@ -16,13 +16,13 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 撞击：造成 12(16) 点伤害。获得 1 层过热，将 2 张伤口加入你的手牌中。
+    /// 撞击：造成 12(16) 点伤害。获得 1 层过热，将 1 张伤口加入你的手牌中。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Impact : ModCardTemplate
     {
         /// <summary>塞进手牌的伤口张数（不随升级变化，所以直接写死，描述里也是字面量）。</summary>
-        private const int WoundsAddedToHand = 2;
+        private const int WoundsAddedToHand = 1;
 
         public Impact() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
         {

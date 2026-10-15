@@ -20,8 +20,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
     /// 1 层：获得 2 层瓦解。
     /// 2 层：获得 2 层瓦解。
     /// 3 层：获得 3 层瓦解。
-    /// 4 层：获得 4 层瓦解。
-    /// 5 层：再获得能力「孤注一掷」。
+    /// 4 层：获得 5 层瓦解。
+    /// 5 层：再获得能力「孤注一掷」，进入5层过热时抽2张牌。
     ///
     /// 返还能量：任何让过热变少的途径都按失去的层数一层一点返能量，
     /// 唯一的例外是「转化」
@@ -37,11 +37,14 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         /// <summary>「孤注一掷」的档位。</summary>
         private const decimal GambitTier = 5;
 
-        /// <summary>瓦解的下限：1 层过热就已经很烫了，先给 2 层。</summary>
-        private const decimal DisintegrationMin = 2;
+        /// <summary>
+        /// 层数 → 瓦解总量，下标就是过热层数（0 层 = 没有）：
+        /// 1~2 层给 2 层，3 层给 3 层，4 层及以上给 5 层。
+        /// </summary>
+        private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 2m, 3m, 5m, 5m];
 
-        /// <summary>瓦解的上限。</summary>
-        private const decimal DisintegrationMax = 4;
+        /// <summary>跨进 5 层过热的那一刻抽几张牌。</summary>
+        private const decimal GambitEntryDraw = 2;
 
         /// <summary>「转化」期间为 true，用来拦掉返还的能量。</summary>
         private bool _suppressEnergyGain;
@@ -60,8 +63,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         protected override bool IncludeEnergyHoverTip => true;
 
         /// <summary>
-        /// 悬停时把两个代价都列出来，**不分档**：即使还没到 5 层，
-        /// 玩家也该先知道再往上叠会发生什么（孤注一掷要到 5 层才真的挂上）。
+        /// 悬停时把两个代价都列出来。
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
@@ -132,6 +134,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             await ApplyDelta<DisintegrationPower>(choiceContext, DisintegrationFor(after) - DisintegrationFor(before));
             await ApplyDelta<TheGambitPower>(choiceContext, Delta(after >= GambitTier, before >= GambitTier));
 
+            // 跨进 5 层的那一刻抽牌。「进入」而不是「处于」：掉出去再涨回来会再抽一次。
+            if (before < GambitTier && after >= GambitTier)
+            {
+                await DrawOnEnteringGambitTier(choiceContext);
+            }
+
             // 层数真的变了才通知「热量收集」这类观察者（削顶吃掉的不算变化）
             if (actualDelta != 0m)
             {
@@ -144,10 +152,18 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
         }
 
-        /// <summary>
-        /// 把「过热真的变了」告诉身上所有 <see cref="IHeatChangeObserver"/>。
-        /// 顺序无所谓：这里已经是判定之后的结论，观察者只需要做出反应。
-        /// </summary>
+        /// <summary>进入 5 层过热时抽牌。</summary>
+        private async Task DrawOnEnteringGambitTier(PlayerChoiceContext choiceContext)
+        {
+            if (Owner.Player is not { } player)
+            {
+                return;
+            }
+
+            Flash();
+            await CardPileCmd.Draw(choiceContext, GambitEntryDraw, player);
+        }
+
         private async Task NotifyHeatChangeObservers(PlayerChoiceContext choiceContext, decimal actualDelta)
         {
             // 先快照：观察者有可能在反应里改动能力列表，边枚举边改会抛异常
@@ -175,9 +191,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
         }
 
-        /// <summary>层数 → 瓦解总量：1~2 层给 2 层，3 层给 3 层，4 层及以上给 4 层。</summary>
-        private static decimal DisintegrationFor(decimal stacks) =>
-            stacks <= 0m ? 0m : Math.Clamp(stacks, DisintegrationMin, DisintegrationMax);
+        /// <summary>层数 → 瓦解总量，查 <see cref="DisintegrationByStacks"/> 那张表。</summary>
+        private static decimal DisintegrationFor(decimal stacks)
+        {
+            int index = (int)Math.Clamp(stacks, 0m, MaxStacks);
+            return DisintegrationByStacks[index];
+        }
 
         /// <summary>差额为 0 时不发命令，免得刷出一堆空的能力变动记录。</summary>
         private async Task ApplyDelta<TPower>(PlayerChoiceContext choiceContext, decimal delta) where TPower : PowerModel

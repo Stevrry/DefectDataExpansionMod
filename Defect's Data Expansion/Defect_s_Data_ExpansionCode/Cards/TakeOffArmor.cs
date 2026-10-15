@@ -37,6 +37,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         /// <summary>悬停时说明它塞进来的晕眩、以及它会给自己叠的过热。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.Static(StaticHoverTip.Block),
             HoverTipFactory.FromCard<Dazed>(),
             HoverTipFactory.FromPower<OverheatPower>()
         ];

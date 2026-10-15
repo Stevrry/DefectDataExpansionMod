@@ -45,7 +45,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
-            HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+            HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+            HoverTipFactory.Static(StaticHoverTip.Block)
         ];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

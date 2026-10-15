@@ -15,7 +15,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 销毁：获得 8 点格挡，消耗手牌中所有的状态牌。升级后额外获得「保留」。
+    /// 销毁：获得 3(5) 点格挡，消耗手牌中所有的状态牌。升级后额外获得「保留」。
     ///
     /// <para>「消耗手牌里的状态牌」与「加工」(Processing) 是同一套筛选，
     /// 区别只是这边不按张数发格挡、而是固定 8 点，并且有「保留」。</para>
@@ -32,7 +32,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(8m, ValueProp.Move)
+            new BlockVar(3m, ValueProp.Move)
         ];
 
         /// <summary>
@@ -41,6 +41,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.Static(StaticHoverTip.Block),
             HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
         ];
 
@@ -58,13 +59,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         }
 
         /// <summary>
-        /// 升级：加上「保留」。
-        ///
-        /// <para>基础牌没有这个关键词，所以写 <c>AddKeyword</c> 而不是 <c>CanonicalKeywords</c>——
-        /// 加进去之后它和自带关键词一样会进描述、带悬停提示。</para>
+        /// 升级：加上「保留」。获得的格挡+2.
         /// </summary>
         protected override void OnUpgrade()
         {
+            DynamicVars.Block.UpgradeValueBy(2m);
             AddKeyword(CardKeyword.Retain);
         }
 

@@ -64,6 +64,7 @@
     <ItemGroup>
       <Folder Include="Defect_s_Data_Expansion\images\cards\" />
       <Folder Include="Defect_s_Data_Expansion\images\powers\" />
+      <Folder Include="Defect_s_Data_Expansion\images\orb\" />
     </ItemGroup>
     
     <Target Name="CheckDependencyPaths">
