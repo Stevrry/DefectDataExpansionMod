@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Saves;
 using STS2RitsuLib.Patching.Models;
+using System.Reflection;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
 {

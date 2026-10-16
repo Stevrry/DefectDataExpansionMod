@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;

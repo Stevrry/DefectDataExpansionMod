@@ -24,5 +24,21 @@
   "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.DECLINE.title": "不同意",
   "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.INITIAL.options.DECLINE.description": "失去[red]{HpLoss}[/red]点生命。获得一件随机[gold]普通遗物[/gold]。",
   "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.AGREE.description": "你握住了他的手。他猛地扣紧你的手腕，一阵虚弱从掌心蔓延至全身。等你缓过神时，他已经离开了。耳边只剩下一声低语：\n\n[shake]“这样才对。”[/shake]",
-  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.DECLINE.description": "你对这个人有种说不出的熟悉感，但还是拒绝了他。你转身正要离开，他在背后叹了口气：\n\n“真可惜……不过，让我助你一臂之力吧。”"
+  "DEFECT_S_DATA_EXPANSION_EVENT_KIND_PERSON.pages.DECLINE.description": "你对这个人有种说不出的熟悉感，但还是拒绝了他。你转身正要离开，他在背后叹了口气：\n\n“真可惜……不过，让我助你一臂之力吧。”",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.title": "废墟",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.INITIAL.description": "碎石间，半截石门斜斜地立着。门后是一只古老的宝箱，箱盖上刻满了你认不出的符号，同时宝箱里传来细微的沙沙声。\n\n你会打开宝箱，还是在一旁搜寻？",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.INITIAL.options.OPEN_CHEST.title": "打开宝箱",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.INITIAL.options.OPEN_CHEST.description": "获得一件被感染的[gold]旧日遗物[/gold]，以及它附带的一个[red]诅咒[/red]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.INITIAL.options.SEARCH.title": "四周搜寻",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.INITIAL.options.SEARCH.description": "获得一张[gold]旧日卡牌[/gold]（可以跳过）。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.OPEN_CHEST.description": "箱锁应声而开。里面躺着一件旧日遗物。与此同时，[jitter]一抹蓝色的影子从宝箱冲出[/jitter]，钻进你的皮肤。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_RUINS.pages.SEARCH.description": "你退开几步，在宝箱旁发现一本被石屑压住的旧书。\n纸页脆得像落叶，但其中的知识仍清晰可读，你学到了古老的知识。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.title": "一场意外",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.INITIAL.description": "三个戴着面具的土匪从灌木中跳出来，挡住你的去路。为首的家伙指着你大喊：\n\n“外高尔爵士！你抢走了我们祖先的遗物，[shake]今天就是你的死期！[/shake]”\n\n你愣了一下。这地方为什么认不清人？你三下五除二就把他们打趴在地。现在，你打算怎么处理他们？",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.INITIAL.options.TRIAL.title": "押去审判",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.INITIAL.options.TRIAL.description": "将一张[red]疑虑[/red]加入到你的[gold]牌组[/gold]。获得一组[gold]卡牌奖励[/gold]和一件随机[gold]遗物[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.INITIAL.options.TAKE_MONEY.title": "拿走钱财",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.INITIAL.options.TAKE_MONEY.description": "获得[blue]{Gold}[/blue][gold]金币[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.TRIAL.description": "你决定花些时间把他们送往法庭，让判决者来处置。",
+  "DEFECT_S_DATA_EXPANSION_EVENT_AN_ACCIDENT.pages.TAKE_MONEY.description": "你从土匪身上搜出沉甸甸的钱袋，满意地掂了掂，然后放他们离开。"
 }

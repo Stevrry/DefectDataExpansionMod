@@ -1,7 +1,7 @@
+using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
-using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events;
 using STS2RitsuLib.Patching.Models;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches

@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Assets;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.UI
 {

@@ -40,5 +40,5 @@
   "DEFECT_S_DATA_EXPANSION_CARD_SCORCHING_SHIELD.title": "灼热护盾",
   "DEFECT_S_DATA_EXPANSION_CARD_SCORCHING_SHIELD.description": "失去1层[gold]过热[/gold]。\n获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]生成[/gold]1个[gold]熔离[/gold]充能球。",
   "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.title": "蓝宝石蠕虫",
-  "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.description": "每当你抽到这张牌时，将这张牌的复制品加入你的[gold]手牌[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.description": "每当你抽到这张牌时，将这张牌的复制品加入你的[gold]抽牌堆[/gold]。"
 }

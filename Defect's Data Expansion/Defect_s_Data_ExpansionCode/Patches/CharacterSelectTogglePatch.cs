@@ -1,11 +1,9 @@
-using System;
-using System.Linq;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.UI;
 using Godot;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
-using MegaCrit.Sts2.addons.mega_text;
 using STS2RitsuLib.Patching.Models;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches

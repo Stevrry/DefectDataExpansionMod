@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +12,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Orbs;
 
 /// <summary>
 /// 熔离：回合结束时，对自己造成 2 点伤害。激发时，触发你所有充能球的被动 1 次。
-/// 熔离球不受集中影响，所以两个数值都直接写死，不走 <c>ModifyOrbValue</c>。
+/// 熔离球不受集中影响，所以两个数值都直接写死，不走 ModifyOrbValue。
 /// </summary>
 [RegisterOrb]
 public class MagmaOrb : ModOrbTemplate

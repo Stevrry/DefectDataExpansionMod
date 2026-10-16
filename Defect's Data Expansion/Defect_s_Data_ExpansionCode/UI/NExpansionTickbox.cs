@@ -1,8 +1,8 @@
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config;
 using Godot;
+using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.addons.mega_text;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.UI
 {

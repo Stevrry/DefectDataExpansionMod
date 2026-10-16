@@ -1,4 +1,3 @@
-using System.Reflection;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config;
 using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches;
 using Godot;
@@ -7,6 +6,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
 using STS2RitsuLib.Patching.Core;
+using System.Reflection;
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode
 {

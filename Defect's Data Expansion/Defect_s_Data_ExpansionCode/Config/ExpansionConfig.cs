@@ -1,4 +1,3 @@
-using System;
 using STS2RitsuLib;
 using STS2RitsuLib.Data;
 using STS2RitsuLib.Utils.Persistence;

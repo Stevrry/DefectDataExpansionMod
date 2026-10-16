@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers;
+﻿using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
