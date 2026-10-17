@@ -38,7 +38,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         /// 层数 → 瓦解总量，下标就是过热层数（0 层 = 没有）：
         /// 1~2 层给 2 层，3 层给 3 层，4 层及以上给 5 层。
         /// </summary>
-        private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 2m, 3m, 5m, 5m];
+        private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 4m, 7m, 12m, 12m];
 
         /// <summary>跨进 5 层过热的那一刻抽几张牌。</summary>
         private const decimal GambitEntryDraw = 2;
@@ -94,6 +94,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
                 _suppressEnergyGain = previous;
             }
         }
+
+        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
+        //public override PowerAssetProfile AssetProfile => new(
+        //    IconPath: "res://Test/images/powers/test_power.png",
+        //    BigIconPath: "res://Test/images/powers/test_power.png"
+        //);
 
         /// <summary>
         /// 层数变化时补发差额，并按失去的层数退还能量。

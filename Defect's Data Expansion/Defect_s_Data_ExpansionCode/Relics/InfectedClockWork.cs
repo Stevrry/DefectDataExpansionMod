@@ -41,15 +41,16 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
 
         public override RelicAssetProfile AssetProfile => new(
             // 小图标（原版85x85）
-            IconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png",
+            IconPath: $"res://Defect_s_Data_Expansion/images/smallRelics/{GetType().Name}.png",
             // 轮廓图标（原版85x85）
             IconOutlinePath: $"res://Defect_s_Data_Expansion/images/outline/{GetType().Name}.png",
             // 大图标（原版256x256）
             BigIconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png");
 
-        /// <summary>悬停时说明「人工制品」是什么。</summary>
+        /// <summary>悬停时先把拾起时拿到的诅咒原样展示出来，再说明「人工制品」是什么。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            .. HoverTipFactory.FromCardWithCardHoverTips<SapphireWorm>(),
             HoverTipFactory.FromPower<ArtifactPower>()
         ];
 

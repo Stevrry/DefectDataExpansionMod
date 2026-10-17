@@ -41,7 +41,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
 
         public override RelicAssetProfile AssetProfile => new(
             // 小图标（原版85x85）
-            IconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png",
+            IconPath: $"res://Defect_s_Data_Expansion/images/smallRelics/{GetType().Name}.png",
             // 轮廓图标（原版85x85）
             IconOutlinePath: $"res://Defect_s_Data_Expansion/images/outline/{GetType().Name}.png",
             // 大图标（原版256x256）

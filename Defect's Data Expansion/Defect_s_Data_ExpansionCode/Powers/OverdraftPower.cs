@@ -27,6 +27,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         /// <summary>描述里带能量图标，把能量悬停也一并显示（原版领地同款）。</summary>
         protected override bool IncludeEnergyHoverTip => true;
 
+        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
+        //public override PowerAssetProfile AssetProfile => new(
+        //    IconPath: "res://Test/images/powers/test_power.png",
+        //    BigIconPath: "res://Test/images/powers/test_power.png"
+        //);
+
         /// <summary>每回合额外多抽 X 张牌。</summary>
         public override decimal ModifyHandDraw(Player player, decimal count)
         {

@@ -3,6 +3,7 @@ using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.RelicPools;
@@ -40,11 +41,18 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
 
         public override RelicAssetProfile AssetProfile => new(
             // 小图标（原版85x85）
-            IconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png",
+            IconPath: $"res://Defect_s_Data_Expansion/images/smallRelics/{GetType().Name}.png",
             // 轮廓图标（原版85x85）
             IconOutlinePath: $"res://Defect_s_Data_Expansion/images/outline/{GetType().Name}.png",
             // 大图标（原版256x256）
             BigIconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png");
+
+        /// <summary>悬停时先把拾起时拿到的诅咒原样展示出来，再说明「缓冲」是什么。</summary>
+        protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [
+            .. HoverTipFactory.FromCardWithCardHoverTips<SapphireWorm>(),
+            HoverTipFactory.FromPower<BufferPower>()
+        ];
 
         /// <summary>拾起时往牌组里塞一张诅咒。</summary>
         public override async Task AfterObtained()

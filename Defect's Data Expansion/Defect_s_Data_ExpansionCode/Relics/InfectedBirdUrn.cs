@@ -42,13 +42,13 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
 
         public override RelicAssetProfile AssetProfile => new(
             // 小图标（原版85x85）
-            IconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png",
+            IconPath: $"res://Defect_s_Data_Expansion/images/smallRelics/{GetType().Name}.png",
             // 轮廓图标（原版85x85）
             IconOutlinePath: $"res://Defect_s_Data_Expansion/images/outline/{GetType().Name}.png",
             // 大图标（原版256x256）
             BigIconPath: $"res://Defect_s_Data_Expansion/images/relics/{GetType().Name}.png");
 
-        /// <summary>悬停时把要拿到的那张诅咒原样展示出来（同原版「召唤铃」的做法）。</summary>
+        /// <summary>悬停时把要拿到的那张诅咒原样展示出来。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
             HoverTipFactory.FromCardWithCardHoverTips<SapphireWorm>();
 

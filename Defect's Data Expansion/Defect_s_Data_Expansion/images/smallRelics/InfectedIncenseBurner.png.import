@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr56bfij5n52a"
-path="res://.godot/imported/D6.png-378cedf51be168337532aee611b8421c.ctex"
+uid="uid://8y5eaq2auayx"
+path="res://.godot/imported/InfectedIncenseBurner.png-d518df39ce5d74bf70773279f88f4a55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Defect_s_Data_Expansion/images/outline/D6.png"
-dest_files=["res://.godot/imported/D6.png-378cedf51be168337532aee611b8421c.ctex"]
+source_file="res://Defect_s_Data_Expansion/images/smallRelics/InfectedIncenseBurner.png"
+dest_files=["res://.godot/imported/InfectedIncenseBurner.png-d518df39ce5d74bf70773279f88f4a55.ctex"]
 
 [params]
 

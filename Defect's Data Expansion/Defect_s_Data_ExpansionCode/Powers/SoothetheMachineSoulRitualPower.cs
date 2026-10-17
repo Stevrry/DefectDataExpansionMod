@@ -28,6 +28,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             HoverTipFactory.FromPower<RitualPower>()
         ];
 
+        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
+        //public override PowerAssetProfile AssetProfile => new(
+        //    IconPath: "res://Test/images/powers/test_power.png",
+        //    BigIconPath: "res://Test/images/powers/test_power.png"
+        //);
+
         public override LocString Title => new("powers", LocPrefix + ".title");
 
         public override LocString Description => new("powers", LocPrefix + ".description");

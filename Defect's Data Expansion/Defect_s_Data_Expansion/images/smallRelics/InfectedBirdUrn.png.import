@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxr5oqnb2cu63"
-path="res://.godot/imported/EmptyBottle.png-4d041a4e707d80ed44a03fab1b911dd6.ctex"
+uid="uid://mwhy5n8xtkdc"
+path="res://.godot/imported/InfectedBirdUrn.png-d0ef07e7fb6288e3e14079a6b6e1f205.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Defect_s_Data_Expansion/images/outline/EmptyBottle.png"
-dest_files=["res://.godot/imported/EmptyBottle.png-4d041a4e707d80ed44a03fab1b911dd6.ctex"]
+source_file="res://Defect_s_Data_Expansion/images/smallRelics/InfectedBirdUrn.png"
+dest_files=["res://.godot/imported/InfectedBirdUrn.png-d0ef07e7fb6288e3e14079a6b6e1f205.ctex"]
 
 [params]
 
