@@ -18,7 +18,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
     /// 被感染的鸟面瓮：拾起时获得一张独特的诅咒（蓝宝石蠕虫）。
     /// 每打出 1 张能力牌，回复 2 点生命。
     /// </summary>
-    [RegisterRelic(typeof(DefectRelicPool))]
+    [RegisterRelic(typeof(EventRelicPool))]
     public sealed class InfectedBirdUrn : ModRelicTemplate
     {
         /// <summary>

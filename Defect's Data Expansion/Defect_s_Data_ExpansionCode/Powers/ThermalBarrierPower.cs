@@ -1,5 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -11,11 +11,14 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
 {
     /// <summary>
-    /// 「热量屏障」挂在自己身上的持续效果：你的回合开始时，每有 1 层过热就获得 X 点格挡。
-    /// 层数（Amount）就是「每层过热给几点格挡」，实际给的量 = 层数 × 当前过热层数。
+    /// 「热量屏障」挂在自己身上的持续效果：过热层数每变化一次，就获得 X 点格挡。
+    /// 层数（Amount）就是「每次变化给几点格挡」。
+    ///
+    /// 触发源是 <see cref="IHeatChangeObserver"/> —— 和「热量收集」一样，
+    /// 由 <see cref="OverheatPower"/> 在算出真实变化量之后回调，所以满层被削顶（其实没变）不会触发。
     /// </summary>
     [RegisterPower]
-    public sealed class ThermalBarrierPower : ModPowerTemplate
+    public sealed class ThermalBarrierPower : ModPowerTemplate, IHeatChangeObserver
     {
         private const string LocPrefix = "DEFECT_S_DATA_EXPANSION_POWER_THERMAL_BARRIER_POWER";
 
@@ -29,27 +32,17 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
 
         protected override string SmartDescriptionLocKey => LocPrefix + ".smartDescription";
 
-        /// <summary>描述里带格挡，把格挡的说明也一并显示（原版给格挡的能力都这么做）。</summary>
+        /// <summary>描述里带过热和格挡，把两者的说明也一并显示。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.FromPower<OverheatPower>(),
             HoverTipFactory.Static(StaticHoverTip.Block)
         ];
 
-        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
-        //public override PowerAssetProfile AssetProfile => new(
-        //    IconPath: "res://Test/images/powers/test_power.png",
-        //    BigIconPath: "res://Test/images/powers/test_power.png"
-        //);
-
-        public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        public async Task OnHeatChanged(PlayerChoiceContext choiceContext, Creature owner, decimal actualDelta)
         {
-            if (player != Owner.Player)
-            {
-                return;
-            }
-
-            int heat = Owner.GetPowerAmount<OverheatPower>();
-            if (heat <= 0)
+            // 过热只会通知「自己身上」的观察者，这层判断只是保险
+            if (owner != Owner)
             {
                 return;
             }
@@ -57,7 +50,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             Flash();
 
             // ValueProp.Move 和卡牌上 BlockVar 声明的那个一致，所以敏捷这类加成照样管用
-            await CreatureCmd.GainBlock(Owner, heat * Amount, ValueProp.Move, null);
+            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move, null);
         }
     }
 }

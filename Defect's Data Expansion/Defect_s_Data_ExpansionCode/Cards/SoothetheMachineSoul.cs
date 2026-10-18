@@ -1,4 +1,3 @@
-using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,7 +11,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 安抚机魂：在下一回合获得 1(2) 层仪式。
+    /// 安抚机魂：失去1集中，获得1（2）仪式。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class SoothetheMachineSoul : ModCardTemplate
@@ -23,6 +22,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
+            new PowerVar<FocusPower>(1m),
             new PowerVar<RitualPower>(1m)
         ];
 
@@ -34,10 +34,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         );
 
         /// <summary>
-        /// 悬停卡牌时显示的提示框：仪式（以及它每回合提供的力量）。
+        /// 悬停卡牌时显示的提示框：集中、仪式（以及它每回合提供的力量）。
         /// </summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.FromPower<FocusPower>(),
             HoverTipFactory.FromPower<RitualPower>(),
             HoverTipFactory.FromPower<StrengthPower>()
         ];
@@ -46,7 +47,15 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-            await PowerCmd.Apply<SoothetheMachineSoulRitualPower>(
+            // 集中可以扣成负数（原版「偏执认知」就是这么扣的），充能球数值最低只会到 0
+            await PowerCmd.Apply<FocusPower>(
+                choiceContext,
+                Owner.Creature,
+                -DynamicVars["FocusPower"].BaseValue,
+                Owner.Creature,
+                this);
+
+            await PowerCmd.Apply<RitualPower>(
                 choiceContext,
                 Owner.Creature,
                 DynamicVars["RitualPower"].BaseValue,

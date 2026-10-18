@@ -1,5 +1,5 @@
 {
     "DEFECT_S_DATA_EXPANSION_ORB_MAGMA_ORB.title": "熔离",
-    "DEFECT_S_DATA_EXPANSION_ORB_MAGMA_ORB.description": "充能球：[gold]激发[/gold]时，触发你所有充能球的被动，回合结束时受到[red]伤害[/red]。",
-    "DEFECT_S_DATA_EXPANSION_ORB_MAGMA_ORB.smartDescription": "[gold]被动[/gold]：回合结束时，受到2点伤害。\n[gold]激发[/gold]：触发你所有充能球的被动1次"
+    "DEFECT_S_DATA_EXPANSION_ORB_MAGMA_ORB.description": "充能球：对你造成[red]伤害[/red]。",
+    "DEFECT_S_DATA_EXPANSION_ORB_MAGMA_ORB.smartDescription": "[gold]被动[/gold]：回合结束时，受到1点伤害。\n[gold]激发[/gold]：触发你所有充能球的被动1次"
 }

@@ -22,5 +22,8 @@
   "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_HELIX.flavor": "似乎坚不可摧，你很好奇究竟是何种生物曾拥有这样的部分，但即使是如此般坚硬，也会被不知名的东西侵蚀。",
   "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_INCENSE_BURNER.title": "被感染的香炉",
   "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_INCENSE_BURNER.description": "拾起时，获得一个独特的[red]诅咒[/red]。\n每[blue]{Turns}[/blue]个回合，获得{IntangiblePower}层[gold]无实体[/gold]。",
-  "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_INCENSE_BURNER.flavor": "香炉中的烟让拥有者获得被焚烧者的灵力，也能把你侵蚀。"
+  "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_INCENSE_BURNER.flavor": "香炉中的烟让拥有者获得被焚烧者的灵力，也能把你侵蚀。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_SPIRIT_POOP.title": "发酵的便便",
+  "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_SPIRIT_POOP.description": "每场战斗开始时，给予你1层[red]虚弱[/red]。",
+  "DEFECT_S_DATA_EXPANSION_RELIC_INFECTED_SPIRIT_POOP.flavor": "某人向精灵献上的贡品被烧焦后的遗留物，已经发酵了。"
 }

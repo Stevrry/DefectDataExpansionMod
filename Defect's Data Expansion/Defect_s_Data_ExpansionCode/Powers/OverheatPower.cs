@@ -15,10 +15,9 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
     /// 过热：层数越高代价越重，但每失去 1 层就返还 1 点能量。
     ///
     /// 1 层：获得 2 层瓦解。
-    /// 2 层：获得 2 层瓦解。
+    /// 2 层：获得 1 层瓦解。
     /// 3 层：获得 3 层瓦解。
-    /// 4 层：获得 5 层瓦解。
-    /// 5 层：再获得能力「孤注一掷」，进入5层过热时抽2张牌。
+    /// 4 层：再获得能力「孤注一掷」，进入4层过热时抽2张牌。
     ///
     /// 返还能量：任何让过热变少的途径都按失去的层数一层一点返能量，
     /// 唯一的例外是「转化」
@@ -28,19 +27,18 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
     {
         private const string LocPrefix = "DEFECT_S_DATA_EXPANSION_POWER_OVERHEAT_POWER";
 
-        /// <summary>层数上限：最高档位就是 5 层，再往上没有新效果，所以直接封顶。</summary>
-        private const int MaxStacks = 5;
+        /// <summary>层数上限：最高档位就是 4 层，再往上没有新效果，所以直接封顶。</summary>
+        private const int MaxStacks = 4;
 
         /// <summary>「孤注一掷」的档位。</summary>
-        private const decimal GambitTier = 5;
+        private const decimal GambitTier = 4;
 
         /// <summary>
         /// 层数 → 瓦解总量，下标就是过热层数（0 层 = 没有）：
-        /// 1~2 层给 2 层，3 层给 3 层，4 层及以上给 5 层。
         /// </summary>
-        private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 4m, 7m, 12m, 12m];
+        private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 3m, 6m, 6m];
 
-        /// <summary>跨进 5 层过热的那一刻抽几张牌。</summary>
+        /// <summary>跨进 4 层过热的那一刻抽几张牌。</summary>
         private const decimal GambitEntryDraw = 2;
 
         /// <summary>「转化」期间为 true，用来拦掉返还的能量。</summary>
@@ -155,7 +153,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
         }
 
-        /// <summary>进入 5 层过热时抽牌。</summary>
+        /// <summary>进入 4 层过热时抽牌。</summary>
         private async Task DrawOnEnteringGambitTier(PlayerChoiceContext choiceContext)
         {
             if (Owner.Player is not { } player)

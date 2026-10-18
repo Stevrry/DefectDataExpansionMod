@@ -21,7 +21,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
     /// 被感染的香炉：拾起时获得一张独特的诅咒（蓝宝石蠕虫）。
     /// 每 6 个自己的回合，获得 1 层无实体。
     /// </summary>
-    [RegisterRelic(typeof(DefectRelicPool))]
+    [RegisterRelic(typeof(EventRelicPool))]
     public sealed class InfectedIncenseBurner : ModRelicTemplate
     {
         private int _turnsSeen;

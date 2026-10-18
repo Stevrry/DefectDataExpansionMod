@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 冷却：失去所有的过热。每失去1层过热，抽一张牌。获得融入暗影。
+    /// 冷却：（保留。）消耗。失去所有的过热。每失去1层过热，抽一张牌。获得融入暗影。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Cooling : ModCardTemplate
@@ -37,6 +37,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         //public override CardAssetProfile AssetProfile => new(
         //    PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
         //);
+
+        /// <summary>消耗。</summary>
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Exhaust
+        ];
 
         /// <summary>悬停时说明它会烧掉什么、换来什么。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -73,10 +79,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 this);
         }
 
-        /// <summary>升级只降费 3 → 2。</summary>
+        /// <summary>升级降费 3 → 2，添加保留。</summary>
         protected override void OnUpgrade()
         {
             EnergyCost.UpgradeBy(-1);
+            AddKeyword(CardKeyword.Retain);
         }
     }
 }

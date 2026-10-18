@@ -28,6 +28,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
 
         public static IEnumerable<CardModel> Postfix(IEnumerable<CardModel> __result)
         {
+            // 标了 [DisabledCard] 的卡：不管是奖励、商店、事件还是战斗内生成，都不进卡池查询结果。
+            // 这条和总开关无关，始终生效。
+            __result = __result.Where(card => !card.GetType().IsDefined(typeof(DisabledCardAttribute), false));
+
             if (ExpansionConfig.EnableExpansion)
             {
                 return __result;

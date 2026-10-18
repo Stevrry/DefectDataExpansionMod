@@ -20,7 +20,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
     /// 事件：好心人
     /// 一个戴着兜帽、脸覆面具的人朝你走来，问你想不想要强大的力量。
     /// 选项一：同意 —— 失去 12 点最大生命，获得先古遗物「低语耳环」。
-    /// 选项二：不同意 —— 失去 14 点生命，获得一件随机的普通遗物。
+    /// 选项二：不同意 —— 失去 8 点生命，获得一件随机的普通遗物。
     ///
     /// 只在一、二阶段出现，且要求血量高于 15 点。
     /// 事件图片暂时使用原版事件「水晶球」的图片。
@@ -47,7 +47,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
             new HpLossVar(MaxHpLossVar, 12m),   // 选项一：失去 12 点最大生命
-            new HpLossVar(14m),                 // 选项二：失去 14 点生命
+            new HpLossVar(8m),                 // 选项二：失去 8 点生命
             new StringVar(RelicVar, ModelDb.Relic<WhisperingEarring>().Title.GetFormattedText())
         ];
 
@@ -67,7 +67,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
 
         protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
         [
-            new EventOption(this, Agree, InitialOptionKey("AGREE"), HoverTipFactory.FromRelic<WhisperingEarring>())
+            // 选项一给低语耳环，并且不说明是低语耳环
+            new EventOption(this, Agree, InitialOptionKey("AGREE"))
                 .ThatDecreasesMaxHp(DynamicVars[MaxHpLossVar].BaseValue),
 
             // 选项二给的是随机遗物，悬停里说不出具体是哪一件

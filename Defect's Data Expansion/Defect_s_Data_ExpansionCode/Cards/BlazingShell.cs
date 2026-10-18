@@ -8,12 +8,14 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config; // 内部配置
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
     /// 炽热外壳：失去所有的过热，每层过热获得 2(3) 点荆棘。
     /// </summary>
+    [DisabledCard] // 暂时弃用
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class BlazingShell : ModCardTemplate
     {

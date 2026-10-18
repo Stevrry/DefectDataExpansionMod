@@ -11,14 +11,14 @@ using STS2RitsuLib.Scaffolding.Godot;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Orbs;
 
 /// <summary>
-/// 熔离：回合结束时，对自己造成 2 点伤害。激发时，触发你所有充能球的被动 1 次。
-/// 熔离球不受集中影响，所以两个数值都直接写死，不走 ModifyOrbValue。
+/// 熔离：回合结束时，对自己造成 1 点伤害。激发时，触发你所有充能球的被动 1 次。
+/// 熔离球不受集中影响，所以两个数值都直接写死。
 /// </summary>
 [RegisterOrb]
 public class MagmaOrb : ModOrbTemplate
 {
     /// <summary>被动：每回合结束时对自己造成的伤害。</summary>
-    private const decimal PassiveDamage = 2m;
+    private const decimal PassiveDamage = 1m;
 
     /// <summary>激发：把身上所有充能球的被动各触发几次。</summary>
     private const decimal EvokeTimes = 1m;

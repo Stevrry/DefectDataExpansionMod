@@ -12,7 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 热量屏障：在你的回合开始时，每有1层过热，就获得1(2)点格挡。
+    /// 热量屏障：每当你失去或获得过热时，就获得2(3)点格挡。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ThermalBarrier : ModCardTemplate
@@ -23,7 +23,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(1m, ValueProp.Move)
+            new BlockVar(2m, ValueProp.Move)
         ];
 
         /// <summary>
@@ -37,6 +37,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<ThermalBarrierPower>(),
+            HoverTipFactory.FromPower<OverheatPower>(),
             HoverTipFactory.Static(StaticHoverTip.Block)
         ];
 
@@ -53,7 +54,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 this);
         }
 
-        /// <summary>升级只加「每层过热给几点格挡」1 → 2。</summary>
+        /// <summary>升级只加「每次过热变化给几点格挡」2 → 3。</summary>
         protected override void OnUpgrade()
         {
             DynamicVars.Block.UpgradeValueBy(1m);

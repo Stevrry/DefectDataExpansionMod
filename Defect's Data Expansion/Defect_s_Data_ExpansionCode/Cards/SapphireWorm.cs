@@ -9,7 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 蓝宝石蠕虫：由事件/被感染遗物给你的诅咒。每当你抽到这张牌，就往[gold]抽牌堆[/gold]里洗一张复制品。
+    /// 蓝宝石蠕虫：由事件/被感染遗物给你的诅咒。每当这张牌被消耗，就往[gold]抽牌堆[/gold]里洗一张复制品。
     /// </summary>
     [RegisterCard(typeof(CurseCardPool))]
     public sealed class SapphireWorm : ModCardTemplate
@@ -38,11 +38,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         //);
 
         /// <summary>
-        /// 抽到这张牌时，往抽牌堆里洗一张复制品。
+        /// 这张牌被消耗时，往抽牌堆里洗一张复制品。
         /// </summary>
-        public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
+        public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
         {
-            // 这个钩子对「每一张被抽到的牌」都会触发，只认自己
+            // 这个钩子对「每一张被消耗的牌」都会触发，只认自己
             if (card != this)
             {
                 return;

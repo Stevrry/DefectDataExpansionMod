@@ -17,7 +17,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
     /// 被感染的齿轮工艺品：拾起时获得一张独特的诅咒（蓝宝石蠕虫）。
     /// 每场战斗开始时，获得 1 层人工制品。
     /// </summary>
-    [RegisterRelic(typeof(DefectRelicPool))]
+    [RegisterRelic(typeof(EventRelicPool))]
     public sealed class InfectedClockWork : ModRelicTemplate
     {
         /// <summary>

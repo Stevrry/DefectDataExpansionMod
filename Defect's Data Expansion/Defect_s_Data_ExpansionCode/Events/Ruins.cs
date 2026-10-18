@@ -22,7 +22,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
     ///
     /// 事件图片暂时使用原版事件「沉没的宝库」的图片。
     /// </summary>
-    // 文档没给层数，所以三个阶段都注册（和「好心人」一样）
+    // 只在第一、二阶段出现：Overgrowth 与 Underdocks 是第一阶段的默认/变体，Hive 是第二阶段。
+    // 事件按阶段注册、不区分角色，所以所有角色都会遇到。
     [RegisterActEvent(typeof(Overgrowth))]
     [RegisterActEvent(typeof(Underdocks))]
     [RegisterActEvent(typeof(Hive))]
@@ -37,7 +38,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
             typeof(InfectedBirdUrn),
             typeof(InfectedClockWork),
             typeof(InfectedHelix),
-            typeof(InfectedIncenseBurner)
+            typeof(InfectedIncenseBurner),
+            typeof(InfectedSpiritPoop)
         ];
 
         /// <summary>暂时复用原版事件「沉没的宝库」的立绘。</summary>

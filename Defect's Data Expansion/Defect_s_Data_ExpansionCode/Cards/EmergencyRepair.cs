@@ -7,12 +7,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Config; // 内部配置
 
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
     /// 抢修：失去1层过热。消耗。升级后获得保留。
     /// </summary>
+    [DisabledCard] //暂时弃用
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class EmergencyRepair : ModCardTemplate
     {

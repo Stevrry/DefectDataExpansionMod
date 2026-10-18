@@ -12,10 +12,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 销毁：获得 3(5) 点格挡，消耗手牌中所有的状态牌。升级后额外获得「保留」。
-    ///
-    /// <para>「消耗手牌里的状态牌」与「加工」(Processing) 是同一套筛选，
-    /// 区别只是这边不按张数发格挡、而是固定 8 点，并且有「保留」。</para>
+    /// 销毁：保留。获得 4(5) 点格挡，消耗手牌中所有的状态牌。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Destroy : ModCardTemplate
@@ -29,7 +26,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 
         protected override IEnumerable<DynamicVar> CanonicalVars =>
         [
-            new BlockVar(3m, ValueProp.Move)
+            new BlockVar(4m, ValueProp.Move)
         ];
 
         /// <summary>
@@ -40,6 +37,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         [
             HoverTipFactory.Static(StaticHoverTip.Block),
             HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+        ];
+
+        /// <summary>保留。</summary>
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Retain
         ];
 
         /// <summary>
@@ -63,12 +66,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         }
 
         /// <summary>
-        /// 升级：加上「保留」。获得的格挡+2.
+        /// 升级：获得的格挡+1。
         /// </summary>
         protected override void OnUpgrade()
         {
-            DynamicVars.Block.UpgradeValueBy(2m);
-            AddKeyword(CardKeyword.Retain);
+            DynamicVars.Block.UpgradeValueBy(1m);
         }
 
         /// <summary>手牌里的状态牌。直接按卡牌类型判断，战斗里生成的临时状态牌同样算。</summary>

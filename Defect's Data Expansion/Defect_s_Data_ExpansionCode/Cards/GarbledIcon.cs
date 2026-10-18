@@ -1,3 +1,4 @@
+using Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -15,36 +16,20 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 乱码的图标：将你身上所有能力与状态的层数除以 2，并重置成随机的一项。
-    /// 抽取**不分类别** —— 正面能力可能被换成一个负面状态，反过来也一样。
+    /// 乱码的图标：重置你身上的所有能力（包括力量与敏捷），
+    /// 再按被清掉的能力层数，把每一项替换成一个「随机能力 × 衰退」（层数减半）。
+    ///
+    /// 候选池只有：打出这张牌的角色的能力池、力量、敏捷、降低力量、降低敏捷。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class GarbledIcon : ModCardTemplate
     {
-        /// <summary>「衰退」悬停说明所在的本地化表。</summary>
+        /// <summary>衰退和随机化悬停说明所在的本地化表。</summary>
         private const string StaticHoverTipTable = "static_hover_tips";
 
-        /// <summary>「衰退」在 static_hover_tips 里的条目名（后面接 .title / .description）。</summary>
+        /// <summary>衰退和随机化在 static_hover_tips 里的条目名（后面接 .title / .description）。</summary>
         private const string DeclineLocEntry = "DEFECT_S_DATA_EXPANSION_DECLINE";
-
-        /// <summary>
-        /// 不进候选池的「怪物专属特性」（负面状态）。
-        ///
-        /// 判据是「除了怪物自己，游戏里没有任何卡牌 / 遗物 / 药水 / 事件在用它」
-        ///
-        /// 新增怪物专属特性时需要往这里补。
-        /// </summary>
-        private static readonly HashSet<Type> MonsterOnlyDebuffs =
-        [
-            typeof(ConstrictPower),     // 紧缠      SlitheringStrangler
-            typeof(DampenPower),        // 抑制      MagiKnight
-            typeof(ImbalancedPower),    // 失衡      BowlbugRock
-            typeof(PlowPower),          // 横冲直撞  CeremonialBeast
-            typeof(ShriekPower),        // 尖啸      TerrorEel
-            typeof(SlowPower),          // 缓慢      BygoneEffigy
-            typeof(SurroundedPower),    // 遭到包围  Rocket
-            typeof(TenderPower)         // 柔嫩      HunterKiller
-        ];
+        private const string RandomizationLocEntry = "DEFECT_S_DATA_EXPANSION_RANDOMIZATION";
 
         public GarbledIcon() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
         {
@@ -57,61 +42,72 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
             Creature creature = Owner.Creature;
 
             // 先快照：下面要一边移除一边施加，枚举中途改集合会直接抛异常。
-            // 寄生在别的能力上的临时能力（ITemporaryPower）跳过 —— 硬拆掉会让它的宿主对不上账。
-            List<PowerModel> powers = creature.Powers
+            List<PowerModel> snapshot = creature.Powers.ToList();
+
+            // 临时能力（ITemporaryPower，比如「本回合 +2 力量」的那层包装）也要拆掉，
+            // 但它和它内部真正生效的能力（StrengthPower / DexterityPower）是重复记账的，
+            // 所以「换几次」只按真正的那个算，否则一份力量会被算两遍。
+            List<PowerModel> replaced = snapshot
                 .Where(power => power is not ITemporaryPower)
                 .ToList();
 
-            foreach (PowerModel power in powers)
+            // 全部清空 —— 力量、敏捷、集中，以及临时能力的包装，一个不留。
+            foreach (PowerModel power in snapshot)
             {
-                int halved = power.Amount / 2;
-
                 await PowerCmd.Remove(power);
+            }
 
-                if (halved == 0)
+            List<Replacement> pool = CandidatePool();
+
+            foreach (PowerModel power in replaced)
+            {
+                // 「衰退」：换来的能力只有原来一半的层数（向下取整，1 层变 0 层就不再补）
+                int halved = power.Amount / 2;
+                if (halved <= 0)
                 {
                     continue;
                 }
 
-                PowerModel? replacement = PickReplacement();
-                if (replacement is null)
-                {
-                    continue;
-                }
+                Replacement chosen = pool[Owner.RunState.Rng.CombatCardGeneration.NextInt(0, pool.Count)];
 
-                // 施加者填自己、来源填这张牌，和原版自施加能力的写法一致
-                await PowerCmd.Apply(choiceContext, replacement, creature, halved, creature, this);
+                // 施加者填自己、来源填这张牌，和原版自施加能力的写法一致。
+                // 负数的力量 / 敏捷就是「降低力量 / 降低敏捷」（这两个能力本身允许负数）。
+                await PowerCmd.Apply(
+                    choiceContext,
+                    chosen.Power.ToMutable(),
+                    creature,
+                    halved * chosen.Sign,
+                    creature,
+                    this);
             }
         }
 
-        /// <summary>
-        /// 从候选池里等概率抽一个，**不看被换掉的那个是正面还是负面** ——
-        /// 正面能力可能被换成负面状态，负面状态也可能被换成正面能力，这就是这张牌要的「跨种类随机」。
-        /// </summary>
-        private PowerModel? PickReplacement()
-        {
-            return Owner.RunState.Rng.CombatCardGeneration.NextItem(CandidatePool())?.ToMutable();
-        }
+        /// <summary>候选池里的一项：哪个能力、带什么符号（-1 就是「降低」版）。</summary>
+        private readonly record struct Replacement(PowerModel Power, decimal Sign);
 
         /// <summary>
-        /// 候选池 = 「这个角色能拿到的那批能力」 ∪ 「所有露脸的负面状态（去掉怪物专属特性）」。
+        /// 候选池 = 角色卡池里的能力 ∪ 力量 / 敏捷 / 降低力量 / 降低敏捷。
         /// </summary>
-        private List<PowerModel> CandidatePool()
+        private List<Replacement> CandidatePool()
         {
-            return CharacterBuffPool()
-                .Concat(ModelDb.AllPowers.Where(power =>
-                    power.IsVisible
-                    && power.Type == PowerType.Debuff
-                    && !MonsterOnlyDebuffs.Contains(power.GetType())))
+            List<Replacement> pool = CharacterPowerPool()
+                .Select(power => new Replacement(power, 1m))
                 .ToList();
+
+            pool.Add(new Replacement(ModelDb.Power<StrengthPower>(), 1m));   // 力量
+            pool.Add(new Replacement(ModelDb.Power<DexterityPower>(), 1m));  // 敏捷
+            pool.Add(new Replacement(ModelDb.Power<StrengthPower>(), -1m));  // 降低力量
+            pool.Add(new Replacement(ModelDb.Power<DexterityPower>(), -1m)); // 降低敏捷
+
+            return pool;
         }
 
         /// <summary>
-        /// 「这个角色能获得的正面能力」引擎里没有现成的表（没有 PowerPool 这种东西），
+        /// 「这个角色卡池里的能力」引擎里没有现成的表（没有 PowerPool 这种东西），
         /// 所以从角色自己的卡池反推：把该角色每张牌的 PowerVar&lt;T&gt; 里的 T 收集起来。
         /// IsVisible 用来滤掉那些幕后干活、不该露面的能力。
         /// </summary>
-        private IEnumerable<PowerModel> CharacterBuffPool()
+        private IEnumerable<PowerModel> CharacterPowerPool()
         {
             HashSet<Type> types = new();
 
@@ -129,14 +125,24 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
                 }
             }
 
-            return ModelDb.AllPowers.Where(power => power.IsVisible && power.Type == PowerType.Buff && types.Contains(power.GetType()));
+            // 力量和敏捷下面单独加（含「降低」版），这里去掉免得重复加权
+            return ModelDb.AllPowers.Where(power =>
+                power.IsVisible
+                && types.Contains(power.GetType())
+                && power.GetType() != typeof(StrengthPower)
+                && power.GetType() != typeof(DexterityPower));
         }
 
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
+            HoverTipFactory.FromPower<StrengthPower>(),
+            HoverTipFactory.FromPower<DexterityPower>(),
             new HoverTip(
                 new LocString(StaticHoverTipTable, DeclineLocEntry + ".title"),
-                new LocString(StaticHoverTipTable, DeclineLocEntry + ".description"))
+                new LocString(StaticHoverTipTable, DeclineLocEntry + ".description")),
+            new HoverTip(
+                new LocString(StaticHoverTipTable, RandomizationLocEntry + ".title"),
+                new LocString(StaticHoverTipTable, RandomizationLocEntry + ".description"))
         ];
 
         protected override void OnUpgrade()

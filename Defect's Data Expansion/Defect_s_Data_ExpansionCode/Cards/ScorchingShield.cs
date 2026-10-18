@@ -38,7 +38,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         //    PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
         //);
 
-        /// <summary>悬停时把三个效果各自的说明都给出来。</summary>
+        /// <summary>悬停时把四个效果各自的说明都给出来。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
         [
             HoverTipFactory.FromPower<OverheatPower>(),
