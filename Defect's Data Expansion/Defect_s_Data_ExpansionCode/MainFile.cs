@@ -28,6 +28,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode
 
             ExpansionConfig.Register(ModId);
 
+            // 原生设置页（主菜单 / 暂停菜单）与多人同步
+            ExpansionSettingsPage.Register();
+            ExpansionSync.Initialize();
+
             var patcher = RitsuLibFramework.CreatePatcher(ModId, "main");
             patcher.RegisterPatch<ContentGateCardsPatch>();
             patcher.RegisterPatch<ExpansionDiskGrantPatch>();

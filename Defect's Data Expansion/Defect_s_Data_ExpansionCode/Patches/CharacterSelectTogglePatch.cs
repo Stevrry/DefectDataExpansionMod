@@ -9,16 +9,14 @@ using STS2RitsuLib.Patching.Models;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
 {
     /// <summary>
-    /// 在选人界面注入模组开关（原版设置页同款的一行：左侧文字 + 右侧勾选框）。
+    /// 在选人界面右上角注入模组开关（原版设置页同款的一行：左侧文字 + 右侧勾选框）。
     /// 只在选中故障机器人（且该角色未锁定）时显示。
+    /// 同一份值也注册进了 RitsuLib 原生设置页（见 Config/ExpansionSettingsPage）。
     /// </summary>
     internal static class CharacterSelectToggle
     {
         /// <summary>注入的开关行节点名。</summary>
         public const string RowName = "ExpansionToggleRow";
-
-        /// <summary>原版「确定选择」按钮的节点路径（直接挂在界面根节点下）。</summary>
-        private const string ConfirmButtonPath = "ConfirmButton";
 
         /// <summary>角色按钮容器，用来查「当前选中的是谁」。</summary>
         private const string ButtonContainerPath = "CharSelectButtons/ButtonContainer";
@@ -27,31 +25,22 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
 
         private const float RowHeight = 64f;
 
-        /// <summary>开关行与按钮之间的空隙。</summary>
-        private const float RowGap = 8f;
+        /// <summary>开关行的右边缘离屏幕右边的距离。</summary>
+        private const float RightMargin = 40f;
+
+        /// <summary>开关行的上边缘离屏幕顶部的距离。</summary>
+        private const float TopMargin = 40f;
 
         /// <summary>开关文字字号。</summary>
         private const int LabelFontSize = 22;
 
-        /// <summary>
-        /// 开关行右边缘离屏幕右边的距离。
-        /// </summary>
-        private const float RightMargin = 40f;
-
-        /// <summary>把开关行插到「确定选择」按钮上方；已经插过就直接返回。</summary>
+        /// <summary>把开关行插到界面右上角；已经插过就直接返回。</summary>
         public static Control? Inject(NCharacterSelectScreen screen)
         {
             Control? existing = screen.GetNodeOrNull<Control>(RowName);
             if (existing != null)
             {
                 return existing;
-            }
-
-            Control? button = screen.GetNodeOrNull<Control>(ConfirmButtonPath);
-            if (button?.GetParent() is not Node parent)
-            {
-                GD.PrintErr($"[DDEMod] 选人界面里找不到 {ConfirmButtonPath}，「数据扩展」开关没有注入");
-                return null;
             }
 
             MegaRichTextLabel label = ModUiUtils.CreateLabel(NExpansionTickbox.EnabledText, LabelFontSize);
@@ -70,15 +59,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
                 CustomMinimumSize = new Vector2(RowWidth, RowHeight)
             };
 
-            parent.AddChild(row);
+            screen.AddChild(row);
+            AnchorTopRight(row);
 
-            SyncRect(screen, row, button);
-
-            // 窗口尺寸/布局变化时按钮会挪位置，跟着走
-            button.Connect(Control.SignalName.ItemRectChanged, Callable.From(() => SyncRect(screen, row, button)));
-            Callable.From(() => SyncRect(screen, row, button)).CallDeferred();
-
-            GD.Print("[DDEMod] 「数据扩展」开关已注入到「确定选择」按钮上方");
+            GD.Print("[DDEMod] 「数据扩展」开关已注入到选人界面右上角");
             return row;
         }
 
@@ -114,21 +98,23 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
             || string.Equals(character?.Id.Entry, "DEFECT", StringComparison.OrdinalIgnoreCase);
 
         /// <summary>
-        /// 把开关行摆到按钮正上方：横向以屏幕右边为锚点（留 <see cref="RightMargin"/> 的边距），
-        /// 纵向底边在按钮上边留 <see cref="RowGap"/> 的空隙。
+        /// 以界面右上角为锚点摆放：右边缘离屏幕右边 <see cref="RightMargin"/>，
+        /// 上边缘离屏幕顶部 <see cref="TopMargin"/>。用锚点而不是绝对坐标，窗口缩放时会自动跟随。
         /// </summary>
-        private static void SyncRect(NCharacterSelectScreen screen, NModToggleRow row, Control button)
+        private static void AnchorTopRight(Control row)
         {
-            if (!GodotObject.IsInstanceValid(screen)
-                || !GodotObject.IsInstanceValid(row)
-                || !GodotObject.IsInstanceValid(button))
-            {
-                return;
-            }
+            row.AnchorLeft = 1f;
+            row.AnchorRight = 1f;
+            row.AnchorTop = 0f;
+            row.AnchorBottom = 0f;
 
-            float right = screen.Size.X - RightMargin;
-            row.Size = new Vector2(RowWidth, RowHeight);
-            row.Position = new Vector2(right - RowWidth, button.GetRect().Position.Y - RowHeight - RowGap);
+            row.OffsetLeft = -(RowWidth + RightMargin);
+            row.OffsetRight = -RightMargin;
+            row.OffsetTop = TopMargin;
+            row.OffsetBottom = TopMargin + RowHeight;
+
+            row.GrowHorizontal = Control.GrowDirection.Begin;
+            row.GrowVertical = Control.GrowDirection.Begin;
         }
     }
 
@@ -137,7 +123,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
     {
         public static string PatchId => "defect_s_data_expansion_character_select_toggle_inject";
 
-        public static string Description => "在选人界面「确定选择」按钮上方注入「数据扩展」开关";
+        public static string Description => "在选人界面右上角注入「数据扩展」开关";
 
         // 只是少一个界面开关，不该让整个模组失效
         public static bool IsCritical => false;

@@ -37,7 +37,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
         public override bool HasUponPickupEffect => true;
 
         /// <summary>模组内容关闭时，本遗物不应出现在任何地方。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         public override RelicAssetProfile AssetProfile => new(
             // 小图标（原版85x85）

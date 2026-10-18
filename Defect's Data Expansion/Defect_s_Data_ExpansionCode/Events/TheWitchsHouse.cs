@@ -55,7 +55,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
         /// </summary>
         public override bool IsAllowed(IRunState runState)
         {
-            if (!ExpansionConfig.EnableExpansion)
+            if (!ExpansionConfig.EffectiveEnableExpansion)
             {
                 return false;
             }

@@ -32,7 +32,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
             // 这条和总开关无关，始终生效。
             __result = __result.Where(card => !card.GetType().IsDefined(typeof(DisabledCardAttribute), false));
 
-            if (ExpansionConfig.EnableExpansion)
+            if (ExpansionConfig.EffectiveEnableExpansion)
             {
                 return __result;
             }
@@ -65,7 +65,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Patches
         /// </summary>
         public static void Postfix(Player __instance)
         {
-            if (!ExpansionConfig.EnableExpansion || __instance.Character is not Defect)
+            if (!ExpansionConfig.EffectiveEnableExpansion || __instance.Character is not Defect)
             {
                 return;
             }

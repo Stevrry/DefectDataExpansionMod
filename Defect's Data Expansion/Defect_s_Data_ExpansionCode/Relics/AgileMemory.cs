@@ -33,7 +33,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
         protected override string IconBaseName => "tough_bandages";
 
         /// <summary>模组内容关闭时，本遗物不应出现在任何地方。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         /// <summary>
         /// 兑现过一次之后，就只是块占地方的纪念品了。

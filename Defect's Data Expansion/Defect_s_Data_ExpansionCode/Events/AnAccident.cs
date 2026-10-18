@@ -40,7 +40,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
         ];
 
         /// <summary>关掉「数据扩展」总开关时本事件也不出现，与卡牌 / 遗物 / 其他事件保持一致。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         /// <summary>
         /// 每次进事件先掷好这一局的钱数，所以按钮上显示的就是实际会给的数，玩家不用赌（同原版「大打出手」）。

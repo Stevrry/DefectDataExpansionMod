@@ -42,7 +42,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
         ];
 
         /// <summary>关掉「数据扩展」总开关时本事件也不出现，与卡牌 / 遗物 / 女巫之屋保持一致。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
         [

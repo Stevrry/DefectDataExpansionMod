@@ -27,7 +27,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
         protected override string IconBaseName => "data_disk";
 
         /// <summary>模组内容关闭时，本遗物不应出现在任何地方。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         /// <summary>战斗卡牌奖励里额外追加一张牌。</summary>
         public override bool TryModifyCardRewardOptions(

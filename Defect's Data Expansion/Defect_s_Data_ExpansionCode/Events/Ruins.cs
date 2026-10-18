@@ -47,7 +47,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Events
             new(InitialPortraitPath: "res://images/events/sunken_treasury.png");
 
         /// <summary>关掉「数据扩展」总开关时本事件也不出现，与卡牌 / 遗物 / 其他事件保持一致。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
         [

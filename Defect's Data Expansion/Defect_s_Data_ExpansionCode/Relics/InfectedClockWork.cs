@@ -31,7 +31,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Relics
         public override bool HasUponPickupEffect => true;
 
         /// <summary>模组内容关闭时，本遗物不应出现在任何地方。</summary>
-        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EnableExpansion;
+        public override bool IsAllowed(IRunState runState) => ExpansionConfig.EffectiveEnableExpansion;
 
         /// <summary>每场战斗开始时给的人工制品层数。</summary>
         protected override IEnumerable<DynamicVar> CanonicalVars =>
