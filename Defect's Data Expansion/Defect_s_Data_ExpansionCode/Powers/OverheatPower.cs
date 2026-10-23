@@ -17,7 +17,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
     /// 1 层：获得 2 层瓦解。
     /// 2 层：获得 1 层瓦解。
     /// 3 层：获得 3 层瓦解。
-    /// 4 层：再获得能力「孤注一掷」，进入4层过热时抽2张牌。
+    /// 4 层：再获得能力「孤注一掷」，退出4层过热时抽2张牌。
     ///
     /// 返还能量：任何让过热变少的途径都按失去的层数一层一点返能量，
     /// 唯一的例外是「转化」
@@ -38,8 +38,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         /// </summary>
         private static readonly decimal[] DisintegrationByStacks = [0m, 2m, 3m, 6m, 6m];
 
-        /// <summary>跨进 4 层过热的那一刻抽几张牌。</summary>
-        private const decimal GambitEntryDraw = 2;
+        /// <summary>退出 4 层过热的那一刻抽几张牌。</summary>
+        private const decimal GambitExitDraw = 2;
 
         /// <summary>「转化」期间为 true，用来拦掉返还的能量。</summary>
         private bool _suppressEnergyGain;
@@ -67,7 +67,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         ];
 
         /// <summary>
-        /// 「转化」预留的接口：在 <paramref name="changeStacks"/> 执行期间，过热掉层不返还能量。
+        /// 「转化」预留的接口：执行期间，过热掉层不返还能量。
         /// 本地化里「转化」的提示就是这句话：「过热被转化时，不会给予能量。」
         ///
         /// 「转化」实装后这样用：
@@ -93,11 +93,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
         }
 
-        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
-        //public override PowerAssetProfile AssetProfile => new(
-        //    IconPath: "res://Test/images/powers/test_power.png",
-        //    BigIconPath: "res://Test/images/powers/test_power.png"
-        //);
+        //自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
+        public override PowerAssetProfile AssetProfile => new(
+            IconPath: "res://Defect_s_Data_Expansion/images/powers/Overheat_s.png",
+            BigIconPath: "res://Defect_s_Data_Expansion/images/powers/Overheat.png"
+        );
 
         /// <summary>
         /// 层数变化时补发差额，并按失去的层数退还能量。
@@ -121,9 +121,15 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
 
             if (Amount > MaxStacks)
             {
-                // 直接用 SetAmount 削顶：它不会再触发本钩子（不递归），
-                // 也不走 ModifyAmount，所以不会多记一条能力变动历史。
                 SetAmount(MaxStacks);
+            }
+
+            // 「升温」给的地板：层数不能低于地板（掉层时被拦下，低于地板时补上来）。
+            // 地板不能超过上限（否则会和上面的削顶互相打架）。
+            decimal floor = Math.Min(Owner.GetPower<WarmingPower>()?.Amount ?? 0m, (decimal)MaxStacks);
+            if (floor > 0m && Amount < floor)
+            {
+                SetAmount((int)floor);
             }
 
             decimal after = Amount;
@@ -135,10 +141,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             await ApplyDelta<DisintegrationPower>(choiceContext, DisintegrationFor(after) - DisintegrationFor(before));
             await ApplyDelta<TheGambitPower>(choiceContext, Delta(after >= GambitTier, before >= GambitTier));
 
-            // 跨进 5 层的那一刻抽牌。「进入」而不是「处于」：掉出去再涨回来会再抽一次。
-            if (before < GambitTier && after >= GambitTier)
+            // 跌出 4 层的那一刻抽牌。「退出」而不是「不在 4 层」：涨回去再掉出来会再抽一次。
+            if (before >= GambitTier && after < GambitTier)
             {
-                await DrawOnEnteringGambitTier(choiceContext);
+                await DrawOnExitingGambitTier(choiceContext);
             }
 
             // 层数真的变了才通知「热量收集」这类观察者（削顶吃掉的不算变化）
@@ -153,8 +159,8 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
         }
 
-        /// <summary>进入 4 层过热时抽牌。</summary>
-        private async Task DrawOnEnteringGambitTier(PlayerChoiceContext choiceContext)
+        /// <summary>退出 4 层过热时抽牌。</summary>
+        private async Task DrawOnExitingGambitTier(PlayerChoiceContext choiceContext)
         {
             if (Owner.Player is not { } player)
             {
@@ -162,7 +168,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             }
 
             Flash();
-            await CardPileCmd.Draw(choiceContext, GambitEntryDraw, player);
+            await CardPileCmd.Draw(choiceContext, GambitExitDraw, player);
         }
 
         private async Task NotifyHeatChangeObservers(PlayerChoiceContext choiceContext, decimal actualDelta)

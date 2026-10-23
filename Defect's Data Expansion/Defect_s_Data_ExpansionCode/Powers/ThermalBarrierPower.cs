@@ -39,6 +39,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
             HoverTipFactory.Static(StaticHoverTip.Block)
         ];
 
+        // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
+        public override PowerAssetProfile AssetProfile => new(
+            IconPath: "res://Defect_s_Data_Expansion/images/powers/ThermalBarrier_s.png",
+            BigIconPath: "res://Defect_s_Data_Expansion/images/powers/ThermalBarrier.png"
+        );
+
         public async Task OnHeatChanged(PlayerChoiceContext choiceContext, Creature owner, decimal actualDelta)
         {
             // 过热只会通知「自己身上」的观察者，这层判断只是保险

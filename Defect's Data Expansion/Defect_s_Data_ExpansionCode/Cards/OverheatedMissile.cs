@@ -18,7 +18,7 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class OverheatedMissile : ModCardTemplate
     {
-        public OverheatedMissile() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        public OverheatedMissile() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
         {
         }
 

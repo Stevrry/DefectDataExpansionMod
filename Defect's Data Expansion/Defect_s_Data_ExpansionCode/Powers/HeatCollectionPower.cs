@@ -43,10 +43,10 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Powers
         }
 
         // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。
-        //public override PowerAssetProfile AssetProfile => new(
-        //    IconPath: "res://Test/images/powers/test_power.png",
-        //    BigIconPath: "res://Test/images/powers/test_power.png"
-        //);
+        public override PowerAssetProfile AssetProfile => new(
+            IconPath: "res://Defect_s_Data_Expansion/images/powers/HeatCollection_s.png",
+            BigIconPath: "res://Defect_s_Data_Expansion/images/powers/HeatCollection.png"
+        );
 
         /// <summary>
         /// 和原版黑洞一样：不经过攻击结算（Unpowered），所以力量之类的加成都不会改这个数。

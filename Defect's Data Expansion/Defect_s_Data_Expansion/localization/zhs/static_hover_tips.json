@@ -4,5 +4,5 @@
   "DEFECT_S_DATA_EXPANSION_TRANSFORM.title": "转化",
   "DEFECT_S_DATA_EXPANSION_TRANSFORM.description": "[gold]过热[/gold]被转化时，不会给予能量。",
   "DEFECT_S_DATA_EXPANSION_RANDOMIZATION.title": "随机化",
-  "DEFECT_S_DATA_EXPANSION_RANDOMIZATION.description": "随机化的选取对象为当前角色拥有的[gold]所有能力[/gold]。\n抽取对象为[gold]该角色的能力池[/gold]与[gold]力量[/gold]、[gold]敏捷[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_RANDOMIZATION.description": "随机化的选取对象为当前角色拥有的[gold]所有能力[/gold]（不包括临时能力）。\n抽取对象为[gold]该角色的能力池[/gold]与[gold]力量[/gold]、[gold]敏捷[/gold]。"
 }

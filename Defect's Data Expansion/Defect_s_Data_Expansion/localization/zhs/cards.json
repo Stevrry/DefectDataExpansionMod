@@ -34,7 +34,7 @@
   "DEFECT_S_DATA_EXPANSION_CARD_THERMAL_BARRIER.title": "热量屏障",
   "DEFECT_S_DATA_EXPANSION_CARD_THERMAL_BARRIER.description": "每当你失去或获得[gold]过热[/gold]时，就获得{Block:diff()}点[gold]格挡[/gold]。",
   "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_RESPONSE.title": "应急处理",
-  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_RESPONSE.description": "[gold]转化[/gold]你所有的[gold]过热[/gold]。\n每失去1层[gold]过热[/gold]，受到{Damage:diff()}点伤害。",
+  "DEFECT_S_DATA_EXPANSION_CARD_EMERGENCY_RESPONSE.description": "失去你所有的[gold]过热[/gold]。\n每失去1层[gold]过热[/gold]，受到{Damage:diff()}点伤害。",
   "DEFECT_S_DATA_EXPANSION_CARD_MAGMA.title": "熔离",
   "DEFECT_S_DATA_EXPANSION_CARD_MAGMA.description": "[gold]生成[/gold]1个[gold]熔离[/gold]充能球。\n去除敌人身上的所有[gold]格挡[/gold]值和[gold]人工制品[/gold]。\n造成{Damage:diff()}点伤害。",
   "DEFECT_S_DATA_EXPANSION_CARD_SCORCHING_SHIELD.title": "灼热护盾",
@@ -42,5 +42,10 @@
   "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.title": "蓝宝石蠕虫",
   "DEFECT_S_DATA_EXPANSION_CARD_SAPPHIRE_WORM.description": "每当这张牌被[gold]消耗[/gold]时，将这张牌的复制品加入你的[gold]抽牌堆[/gold]。",
   "DEFECT_S_DATA_EXPANSION_CARD_COOLING_STEAM.title": "散热蒸汽",
-  "DEFECT_S_DATA_EXPANSION_CARD_COOLING_STEAM.description": "失去1层[gold]过热[/gold]。\n获得{Block:diff()}点[gold]格挡[/gold]。"
+  "DEFECT_S_DATA_EXPANSION_CARD_COOLING_STEAM.description": "失去1层[gold]过热[/gold]。\n获得{Block:diff()}点[gold]格挡[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_TRANSCENDING_TIME_AND_SPACE.title": "超越时空",
+  "DEFECT_S_DATA_EXPANSION_CARD_TRANSCENDING_TIME_AND_SPACE.description": "获得{Energy:energyIcons()}。\n抽{Cards:diff()}张牌。\n将一张[gold]虚空[/gold]和一张[gold]灼伤[/gold]加入你的[gold]弃牌堆[/gold]。",
+  "DEFECT_S_DATA_EXPANSION_CARD_WARMING.title": "升温",
+  "DEFECT_S_DATA_EXPANSION_CARD_WARMING.description": "[gold]消耗[/gold]任意张手牌，在本场战斗中将[gold]过热[/gold]的层数下限提高{WarmingPower:diff()}。",
+  "DEFECT_S_DATA_EXPANSION_CARD_WARMING.selectionScreenPrompt": "选择要消耗的手牌"
 }

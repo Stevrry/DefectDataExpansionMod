@@ -13,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
 {
     /// <summary>
-    /// 熔离：生成一个熔离充能球，去除 1 名敌人的所有格挡与人工制品，造成 5(7) 点伤害。
+    /// 熔离：消耗。生成一个熔离充能球，去除 1 名敌人的所有格挡与人工制品，造成 5(7) 点伤害。
     /// </summary>
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Magma : ModCardTemplate
@@ -33,6 +33,12 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         //public override CardAssetProfile AssetProfile => new(
         //    PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
         //);
+
+        /// <summary>消耗。</summary>
+        public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [
+            CardKeyword.Exhaust
+        ];
 
         /// <summary>悬停时说明生成的球本身、充能是什么、以及被熔掉的格挡和人工制品是什么。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
