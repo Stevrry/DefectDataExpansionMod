@@ -28,11 +28,11 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         ];
 
         /// <summary>
-        /// 卡图路径（美术还没做，先注释掉；有了图再打开）
+        /// 卡图路径
         /// </summary>
-        //public override CardAssetProfile AssetProfile => new(
-        //    PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
-        //);
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
 
         /// <summary>悬停时说明它塞进来的虚空、灼伤，以及它给的能量。</summary>
         protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

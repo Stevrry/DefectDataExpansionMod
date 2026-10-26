@@ -32,9 +32,9 @@ namespace Defect_s_Data_Expansion.Defect_s_Data_ExpansionCode.Cards
         /// <summary>
         /// 卡图路径
         /// </summary>
-        //public override CardAssetProfile AssetProfile => new(
-        //    PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
-        //);
+        public override CardAssetProfile AssetProfile => new(
+            PortraitPath: $"res://Defect_s_Data_Expansion/images/cards/{GetType().Name}.png"
+        );
 
         /// <summary>
         /// 身上没有过热就打不出去（同原版「终结技」）。
