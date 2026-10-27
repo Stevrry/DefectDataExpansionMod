@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Defect_s_Data_Expansion"
+config/name="DefectsDataExpansion"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
-config/icon="res://Defect_s_Data_Expansion/mod_image.png"
+config/icon="res://DefectsDataExpansion/mod_image.png"
 
 [display]
 
@@ -24,7 +24,7 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="Defect_s_Data_Expansion"
+project/assembly_name="DefectsDataExpansion"
 
 [rendering]
 
