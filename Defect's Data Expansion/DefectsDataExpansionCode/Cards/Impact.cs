@@ -10,12 +10,14 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
     /// 撞击：造成 12(16) 点伤害。获得 1 层过热，将 1 张伤口加入你的手牌中。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Impact : ModCardTemplate
     {

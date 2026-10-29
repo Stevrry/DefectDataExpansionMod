@@ -16,7 +16,7 @@ using STS2RitsuLib.Scaffolding.Content;
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
-    /// 乱码的图标：重置你身上的能力（包括力量与敏捷），
+    /// AB5A91（原：乱码的图标）：重置你身上的能力（包括力量与敏捷），
     /// 再按被清掉的能力层数，把每一项替换成一个「随机能力 × 衰退」（层数减半）。
     ///
     /// 临时能力（ITemporaryPower，例如「本回合 +2 力量」）整类跳过：

@@ -28,10 +28,10 @@ namespace DefectsDataExpansion.DefectsDataExpansionCode.UI
         public const string DisabledText = "数据扩展：关闭";
 
         /// <summary>跟随主机且主机开启时显示的文案。</summary>
-        public const string FollowingHostEnabledText = "数据扩展：开启（跟随主机）";
+        public const string FollowingHostEnabledText = "数据扩展：开启\n（跟随主机）";
 
         /// <summary>跟随主机且主机关闭时显示的文案。</summary>
-        public const string FollowingHostDisabledText = "数据扩展：关闭（跟随主机）";
+        public const string FollowingHostDisabledText = "数据扩展：关闭\n（跟随主机）";
 
         /// <summary>勾选框本体的边长。</summary>
         private const float BoxSize = 64f;

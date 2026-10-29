@@ -10,12 +10,14 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
     /// 卸甲：获得12(15)点格挡，将一张晕眩添加到你的弃牌堆中，获得1层过热。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class TakeOffArmor : ModCardTemplate
     {

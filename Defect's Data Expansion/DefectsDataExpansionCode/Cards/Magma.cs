@@ -9,12 +9,14 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
     /// 熔离：消耗。生成一个熔离充能球，去除 1 名敌人的所有格挡与人工制品，造成 5(7) 点伤害。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class Magma : ModCardTemplate
     {

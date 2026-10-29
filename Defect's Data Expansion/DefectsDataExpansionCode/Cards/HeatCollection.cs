@@ -7,12 +7,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
     /// 热量收集：每当你失去或获得过热时，对所有敌人造成 6(9) 点伤害。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class HeatCollection : ModCardTemplate
     {

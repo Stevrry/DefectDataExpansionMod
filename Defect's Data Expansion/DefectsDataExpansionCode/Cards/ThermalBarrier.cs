@@ -8,12 +8,14 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
     /// <summary>
     /// 热量屏障：每当你失去或获得过热时，就获得2(3)点格挡。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ThermalBarrier : ModCardTemplate
     {

@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using DefectsDataExpansion.DefectsDataExpansionCode.Config; // 内部配置
 
 namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
 {
@@ -16,6 +17,7 @@ namespace DefectsDataExpansion.DefectsDataExpansionCode.Cards
     /// 强制扩容：获得1个充能球栏位，获得1层过热。
     /// 未升级时还会往手牌里塞一张灼伤。
     /// </summary>
+    [DisabledCard]
     [RegisterCard(typeof(DefectCardPool))]
     public sealed class ForcedExpansion : ModCardTemplate
     {
